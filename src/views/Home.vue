@@ -35,118 +35,56 @@ import Free from "/hg/freedom.jpg";
         <div class="relative overflow-hidden md:h-[700px] ">
           <!-- Item 1 -->
           <div class="hidden duration-70 ease-in-out" data-carousel-item>
-            <img
-              :src="slider1"
-              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
+            <img :src="slider1" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..." />
           </div>
           <!-- Item 2 -->
           <div class="dhidden uration-70 ease-in-out" data-carousel-item>
-            <img
-              :src="slider2"
-              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
+            <img :src="slider2" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..." />
           </div>
           <div class="hiddenduration-70 ease-in-out" data-carousel-item>
-            <img
-              :src="slider3"
-              class="absolute object-cover block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
+            <img :src="slider3"
+              class="absolute object-cover block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
           </div>
         </div>
 
         <!-- Slider indicators -->
-        <div
-          class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
-        >
-          <button
-            type="button"
-            class="w-3 h-3 rounded-full"
-            aria-current="true"
-            aria-label="Slide 1"
-            data-carousel-slide-to="0"
-          ></button>
-          <button
-            type="button"
-            class="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 2"
-            data-carousel-slide-to="1"
-          ></button>
-          <button
-            type="button"
-            class="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 3"
-            data-carousel-slide-to="2"
-          ></button>
-          <button
-            type="button"
-            class="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 4"
-            data-carousel-slide-to="3"
-          ></button>
-          <button
-            type="button"
-            class="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 5"
-            data-carousel-slide-to="4"
-          ></button>
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+            data-carousel-slide-to="0"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+            data-carousel-slide-to="1"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+            data-carousel-slide-to="2"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+            data-carousel-slide-to="3"></button>
+          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+            data-carousel-slide-to="4"></button>
         </div>
         <!-- Slider controls -->
-        <button
-          type="button"
+        <button type="button"
           class="relative top-0 start-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-prev
-        >
+          data-carousel-prev>
           <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
-          >
-            <svg
-              class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 1 1 5l4 4"
-              />
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 1 1 5l4 4" />
             </svg>
             <span class="sr-only">Previous</span>
           </span>
         </button>
-        <button
-          type="button"
+        <button type="button"
           class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-next
-        >
+          data-carousel-next>
           <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
-          >
-            <svg
-              class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 9 4-4-4-4"
-              />
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 9 4-4-4-4" />
             </svg>
             <span class="sr-only">Next</span>
           </span>
@@ -160,8 +98,7 @@ import Free from "/hg/freedom.jpg";
         <p class="font-semibold text-[50px]">Scale Category</p>
         <div class="pt-10 grid grid-cols-4 gap-4 mx-60">
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
               <img class="rounded-t-lg p-5" :src="Hg" alt="" />
             </a>
@@ -173,8 +110,7 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
               <img class="rounded-t-lg p-5" :src="Rg" alt="" />
             </a>
@@ -186,8 +122,7 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
               <img class="rounded-t-lg p-5" :src="Mg" alt="" />
             </a>
@@ -199,8 +134,7 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
               <img class="rounded-t-lg p-5 max-w-[199px]" :src="Sd" alt="" />
             </a>
@@ -212,14 +146,9 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 max-w-md container"
-                :src="Pg"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 max-w-md container" :src="Pg" alt="" />
             </a>
             <div class="p-5">
               <a href="#">
@@ -229,14 +158,9 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 max-w-[199px] container"
-                :src="One"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 max-w-[199px] container" :src="One" alt="" />
             </a>
             <div class="p-5">
               <a href="#">
@@ -246,14 +170,9 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 max-w-md container"
-                :src="Hirm"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 max-w-md container" :src="Hirm" alt="" />
             </a>
             <div class="p-5">
               <a href="#">
@@ -263,14 +182,9 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-          >
+            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 max-w-md container"
-                :src="Eg"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 max-w-md container" :src="Eg" alt="" />
             </a>
             <div class="p-5">
               <a href="#">
@@ -289,96 +203,72 @@ import Free from "/hg/freedom.jpg";
 
         <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
 
-            <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Rx"
-                alt=""
-              />
+          <router-link to="/product"
+            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+            <a>
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg Rx-78-2 Ver 2.0</h5>
                 <p class="mb-2 text-md">₱ 2000.00 </p>
-            </a>
+              </a>
             </div>
-          </div>
+          </router-link>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+
+          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Nu"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nu" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg Rx93 Hi-Nu</h5>
                 <p class="mb-2 text-md">₱ 3200.00 </p>
-            </a>
+              </a>
             </div>
-          </div>
+          </router-link>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="God"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="God" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg God Gundam</h5>
                 <p class="mb-2 text-md">₱ 2600.00 </p>
-            </a>
+              </a>
             </div>
-          </div>
+          </router-link>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Wing"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Wing" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg Wing Gundam</h5>
                 <p class="mb-2 text-md">₱ 1900.00 </p>
-            </a>
+              </a>
             </div>
-          </div>
-          
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          </router-link>
+
+          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Epyon"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Epyon" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg Epyon gundam</h5>
                 <p class="mb-2 text-md">₱ 2000.00 </p>
-            </a>
+              </a>
             </div>
-          </div>
-          
+          </router-link>
+
         </div>
       </div>
     </section>
@@ -390,106 +280,79 @@ import Free from "/hg/freedom.jpg";
 
         <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
 
-            <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Cali"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Cali" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Hg Calibarn Gundam</h5>
                 <p class="mb-2 text-md">₱ 1400.00 </p>
-            </a>
+              </a>
             </div>
           </div>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Air"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Air" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Hg Aerial</h5>
                 <p class="mb-2 text-md">₱ 1400.00 </p>
-            </a>
+              </a>
             </div>
           </div>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Lfr"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Lfr" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Hg Lfrith</h5>
                 <p class="mb-2 text-md">₱ 1800.00 </p>
-            </a>
+              </a>
             </div>
           </div>
 
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Just"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Just" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Hg Immortal Justice</h5>
                 <p class="mb-2 text-md">₱ 1500.00 </p>
-            </a>
+              </a>
             </div>
           </div>
-          
-          <div
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+
+          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
             <a href="#">
-              <img
-                class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex"
-                :src="Free"
-                alt=""
-              />
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Free" alt="" />
             </a>
             <div class="p-5">
-              <a href="#" >
+              <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Hg Rising Freedom</h5>
                 <p class="mb-2 text-md">₱ 1600.00 </p>
-            </a>
+              </a>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
-    
+
   </div>
 </template>
 
 <style scoped>
-
-
 /* .animated {
     animation-duration: 1s;
     animation-fill-mode: both;

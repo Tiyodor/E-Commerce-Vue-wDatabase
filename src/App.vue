@@ -1,8 +1,9 @@
 <script setup>
-import Home from "./views/Home.vue";
 import { Search } from 'lucide-vue-next';
 import { ShoppingBag } from 'lucide-vue-next';
 import Logo from '/GundFactory.png';
+import { RouterView } from "vue-router";
+
 </script>
 <template>
   <!-- NavBar -->
@@ -28,7 +29,10 @@ import Logo from '/GundFactory.png';
 </button>
   </div>
 </div>
-  <Home />
+  
+
+  <RouterView/>
+
   <!--Footer-->
   <div class="bg-white relative border-t-[1px] items-center border-black pt-12 mt-20 max-w-[1950px] pb-10 mx-10 b-20"> 
     <div class="flex justify-evenly">
