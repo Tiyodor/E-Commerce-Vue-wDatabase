@@ -30,9 +30,9 @@ import Free from "/hg/freedom.jpg";
   <div class="relative content-center mx-10">
     <!-- Carousel section-->
     <section>
-      <div id="default-carousel" class="" data-carousel="slide">
+      <div id="default-carousel container" class="" data-carousel="slide">
         <!-- Carousel wrapper -->
-        <div class="relative overflow-hidden md:h-[780px]">
+        <div class="relative overflow-hidden md:h-[700px] ">
           <!-- Item 1 -->
           <div class="hidden duration-70 ease-in-out" data-carousel-item>
             <img
@@ -282,7 +282,6 @@ import Free from "/hg/freedom.jpg";
       </div>
     </section>
 
-
     <!-- RG section -->
     <section>
       <div class="pt-10 px-10 mx-[180px] bg-white">
@@ -484,6 +483,7 @@ import Free from "/hg/freedom.jpg";
         </div>
       </div>
     </section>
+    
   </div>
 </template>
 
