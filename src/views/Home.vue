@@ -30,66 +30,18 @@ import Free from "/hg/freedom.jpg";
   <div class="relative content-center mx-10">
     <!-- Carousel section-->
     <section>
-      <div id="default-carousel container" class="" data-carousel="slide">
-        <!-- Carousel wrapper -->
-        <div class="relative overflow-hidden md:h-[700px] ">
-          <!-- Item 1 -->
-          <div class="hidden duration-70 ease-in-out" data-carousel-item>
-            <img :src="slider1" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..." />
-          </div>
-          <!-- Item 2 -->
-          <div class="dhidden uration-70 ease-in-out" data-carousel-item>
-            <img :src="slider2" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..." />
-          </div>
-          <div class="hiddenduration-70 ease-in-out" data-carousel-item>
-            <img :src="slider3"
-              class="absolute object-cover block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-          </div>
-        </div>
-
-        <!-- Slider indicators -->
-        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-            data-carousel-slide-to="0"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-            data-carousel-slide-to="1"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-            data-carousel-slide-to="2"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-            data-carousel-slide-to="3"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
-            data-carousel-slide-to="4"></button>
-        </div>
-        <!-- Slider controls -->
-        <button type="button"
-          class="relative top-0 start-0 z-30  items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-prev>
-          <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M5 1 1 5l4 4" />
-            </svg>
-            <span class="sr-only">Previous</span>
-          </span>
-        </button>
-        <button type="button"
-          class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-next>
-          <span
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m1 9 4-4-4-4" />
-            </svg>
-            <span class="sr-only">Next</span>
-          </span>
-        </button>
-      </div>
+      <div id="default-carousel-container" class="carousel-container" data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div id="car">
+      <transition name="fade" mode="out-in">
+        <img :src="activeSlide.imageUrl" id="slider" alt="Slide">
+      </transition>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-controls__button" @click="previous">&#60;</button>
+      <button class="carousel-controls__button" @click="next">&#62;</button>
+    </div>
+  </div>
     </section>
 
     <!-- Category section -->
@@ -352,43 +304,98 @@ import Free from "/hg/freedom.jpg";
   </div>
 </template>
 
+
+<script>
+export default {
+  data() {
+    return {
+      slides: [
+        {
+          imageUrl: '/public/slide1.jpg',
+          id: 1
+        },
+        {
+          imageUrl: '/public/slide2.jpg',
+          id: 2
+        },
+        {
+          imageUrl: '/public/slide3.jpg',
+          id: 3
+        }
+      ],
+      activeIndex: 0,
+      autoSlideInterval: null
+    };
+  },
+  computed: {
+    activeSlide() {
+      return this.slides[this.activeIndex];
+    }
+  },
+  mounted() {
+    this.startAutoSlide();
+  },
+  methods: {
+    next() {
+      this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+    },
+    previous() {
+      this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
+    },
+    startAutoSlide() {
+      this.autoSlideInterval = setInterval(() => {
+        this.next();
+      }, 2000); // Change interval duration as needed
+    },
+    stopAutoSlide() {
+      clearInterval(this.autoSlideInterval);
+    }
+  },
+  beforeDestroy() {
+    this.stopAutoSlide();
+  }
+};
+</script>
+
 <style scoped>
-/* .animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-fill-mode: both
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.animatedFadeInUp {
-    opacity: 0
+#car {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
-.fadeInUp {
-    opacity: 0;
-    animation-name: fadeInUp;
-    -webkit-animation-name: fadeInUp;
+#slider {
+  max-width: 100%;
+  width: 1950px;
+  max-height: 100%;
+  height: 800px;
 }
 
-@keyframes fadeInUp {
-    from {
-        transform: translate3d(0,40px,0)
-    }
-
-    to {
-        transform: translate3d(0,0,0);
-        opacity: 1
-    }
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-@-webkit-keyframes fadeInUp {
-    from {
-        transform: translate3d(0,40px,0)
-    }
+.carousel-controls__button {
+  cursor: pointer;
+  background: rgb(32, 32, 32);
+  border: 0;
+  color: #fff;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
 
-    to {
-        transform: translate3d(0,0,0);
-        opacity: 1
-    }
-} */
 </style>
