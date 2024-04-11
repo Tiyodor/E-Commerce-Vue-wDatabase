@@ -21,6 +21,7 @@ import Lfr from "/hg/lfrith.jpg";
 import Just from "/hg/justice.jpg";
 import Free from "/hg/freedom.jpg";
 
+
 </script>
 
 
@@ -311,17 +312,25 @@ export default {
     return {
       slides: [
         {
-          imageUrl: '/public/slide1.jpg',
+          imageUrl: '/slide1.jpg',
           id: 1
         },
         {
-          imageUrl: '/public/slide2.jpg',
+          imageUrl: '/slide2.jpg',
           id: 2
         },
         {
-          imageUrl: '/public/slide3.jpg',
+          imageUrl: '/slide3.jpg',
           id: 3
-        }
+        },
+        {
+          imageUrl: '/slide4.jpg',
+          id: 4
+        },
+        {
+          imageUrl: '/slide5.jpg',
+          id: 5
+        },
       ],
       activeIndex: 0,
       autoSlideInterval: null
@@ -345,7 +354,7 @@ export default {
     startAutoSlide() {
       this.autoSlideInterval = setInterval(() => {
         this.next();
-      }, 2000); // Change interval duration as needed
+      }, 3000); // Change interval duration as needed
     },
     stopAutoSlide() {
       clearInterval(this.autoSlideInterval);
@@ -373,9 +382,10 @@ export default {
 }
 
 #slider {
+  display:flex;
   max-width: 100%;
-  width: 1950px;
-  max-height: 100%;
+  /* width: 1950px;
+  max-height: 100%; */
   height: 800px;
 }
 
