@@ -91,7 +91,7 @@ import { List } from 'lucide-vue-next';
                 <ArrowUpDown />
             </button>
              </div>
-        <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
+        <div class="pt-10 grid grid-cols-5 gap-8 mx-10 bg-[#f6f6f6]">
 
           <router-link to="/product"
             class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
