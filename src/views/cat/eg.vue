@@ -1,9 +1,8 @@
 <script setup>
-import Cali from "/hg/calibarn.jpg";
-import Air from "/hg/aerial.jpg";
-import Lfr from "/hg/lfrith.jpg";
-import Just from "/hg/justice.jpg";
-import Free from "/hg/freedom.jpg";
+import Rx from "/eg/egrx.jpg";
+import Nu from "/eg/nu.jpg";
+import Str from "/eg/str.jpg";
+import Strg from "/eg/strg.jpeg";
 import { ArrowUpDown } from 'lucide-vue-next';
 import { List } from 'lucide-vue-next';
 import Eg from "/scales/eg.png";
@@ -103,12 +102,12 @@ import Eg from "/scales/eg.png";
         <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
           <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Cali" alt="" />
+            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Calibarn Gundam</h5>
-              <p class="mb-2 text-md">₱ 1400.00 </p>
+              <h5 class="mb-2 text-lg font-bold">Eg Rx-78-2 Gundam</h5>
+              <p class="mb-2 text-md">₱ 700.00 </p>
             </a>
           </div>
         </div>
@@ -116,12 +115,12 @@ import Eg from "/scales/eg.png";
         <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
           <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Air" alt="" />
+            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nu" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Aerial</h5>
-              <p class="mb-2 text-md">₱ 1400.00 </p>
+              <h5 class="mb-2 text-lg font-bold">Eg Nu Gundam</h5>
+              <p class="mb-2 text-md">₱ 799.00 </p>
             </a>
           </div>
         </div>
@@ -129,12 +128,12 @@ import Eg from "/scales/eg.png";
         <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
           <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Lfr" alt="" />
+            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Str" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Lfrith</h5>
-              <p class="mb-2 text-md">₱ 1800.00 </p>
+              <h5 class="mb-2 text-lg font-bold">Eg Strike</h5>
+              <p class="mb-2 text-md">₱ 600.00 </p>
             </a>
           </div>
         </div>
@@ -142,28 +141,16 @@ import Eg from "/scales/eg.png";
         <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
           <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Just" alt="" />
+            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Strg" alt="" />
           </a>
           <div class="p-5">
             <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Immortal Justice</h5>
-              <p class="mb-2 text-md">₱ 1500.00 </p>
+              <h5 class="mb-2 text-lg font-bold">Eg Strike Galaxy</h5>
+              <p class="mb-2 text-md">₱ 799.00 </p>
             </a>
           </div>
         </div>
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Free" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Rising Freedom</h5>
-              <p class="mb-2 text-md">₱ 1600.00 </p>
-            </a>
-          </div>
-        </div>
 
       </div>
     </div>

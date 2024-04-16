@@ -125,8 +125,8 @@ import Rx from "/rg/Rx782.jpg";
           <p class="flex pl-5 text-gray-500">Tax included and shipping and discounts calculated at checkout</p>
           <div  class="pb-4 pt-4 mx-14">
             <router-link to="/checkout">
-            <button class="relative items-center text-lg border border-blue-400 border-solid rounded-3xl h-[45px]
-             w-full bg-white hover:border-2 hover:border-blue-600"  @click.self="closeSidebar">
+            <button class="relative items-center text-lg border border-blue-600 border-solid rounded-3xl h-[45px]
+             w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400"  @click.self="closeSidebar">
               Check out
             </button>
             </router-link>
