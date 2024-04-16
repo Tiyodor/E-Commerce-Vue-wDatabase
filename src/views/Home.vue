@@ -17,15 +17,15 @@ import Air from "/hg/aerial.jpg";
 import Lfr from "/hg/lfrith.jpg";
 import Just from "/hg/justice.jpg";
 import Free from "/hg/freedom.jpg";
-
-
 </script>
 
-
+<!--Fix On view show animation for home-->
 
 
 <template>
-  <div class="relative content-center mx-10">
+  
+  <div class="relative content-center mx-10 select-none">
+    
     <!-- Carousel section-->
     <section>
       <div id="default-carousel-container" class="carousel-container" data-carousel="slide">
@@ -47,101 +47,113 @@ import Free from "/hg/freedom.jpg";
       <div class="pt-10 px-10 mx-[180px] bg-white ">
         <p class="font-semibold text-[50px]">Scale Category</p>
         <div class="pt-10 grid grid-cols-4 gap-4 mx-60">
-          <div
-            class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+
+          <div class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
+            <router-link to="/high-grade">
               <img class="rounded-t-lg p-5" :src="Hg" alt="" />
-            </a>
             <div class="p-5">
-              <a href="#">
                 <h5 class="mb-2 text-2xl font-bold">High Grade</h5>
-              </a>
             </div>
+          </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/real-grade">
+
               <img class="rounded-t-lg p-5" :src="Rg" alt="" />
-            </a>
+          
             <div class="p-5">
-              <a href="#">
+            
                 <h5 class="mb-2 text-2xl font-bold">Real Grade</h5>
-              </a>
+
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/master-grade">
+
               <img class="rounded-t-lg p-5" :src="Mg" alt="" />
-            </a>
+           
             <div class="p-5">
-              <a href="#">
+             
                 <h5 class="mb-2 text-2xl font-bold">Master Grade</h5>
-              </a>
+         
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/super-deformed">
+
               <img class="rounded-t-lg p-5 max-w-[199px]" :src="Sd" alt="" />
-            </a>
+           
             <div class="p-5">
-              <a href="#">
+             
                 <h5 class="mb-2 text-2xl font-bold">Super Deformed</h5>
-              </a>
+              
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/perfect-grade">
+
               <img class="rounded-t-lg p-5 max-w-md container" :src="Pg" alt="" />
-            </a>
+           
             <div class="p-5">
-              <a href="#">
+              
                 <h5 class="mb-2 text-2xl font-bold">Perfect Grade</h5>
-              </a>
+              
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/others">
+
               <img class="rounded-t-lg p-5 max-w-[199px] container" :src="One" alt="" />
-            </a>
+           
             <div class="p-5">
-              <a href="#">
+             
                 <h5 class="mb-2 text-2xl font-bold">1/100 scale</h5>
-              </a>
+            
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/hires">
+
               <img class="rounded-t-lg p-5 max-w-md container" :src="Hirm" alt="" />
-            </a>
+            
             <div class="p-5">
-              <a href="#">
+              
                 <h5 class="mb-2 text-2xl font-bold">High Resolution</h5>
-              </a>
+             
             </div>
+            </router-link>
           </div>
 
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
-            <a href="#">
+            <router-link to="/entry-grade">
+
               <img class="rounded-t-lg p-5 max-w-md container" :src="Eg" alt="" />
-            </a>
+            
             <div class="p-5">
-              <a href="#">
                 <h5 class="mb-2 text-2xl font-bold">Entry Grade</h5>
-              </a>
+             
             </div>
+            </router-link>
           </div>
+          
         </div>
       </div>
     </section>
@@ -181,7 +193,7 @@ import Free from "/hg/freedom.jpg";
           </router-link>
 
           <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline grayscale">
 
             <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
 
@@ -249,7 +261,7 @@ import Free from "/hg/freedom.jpg";
           </div>
 
           <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline grayscale">
 
             <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
 

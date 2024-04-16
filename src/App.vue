@@ -8,11 +8,12 @@ import { X } from 'lucide-vue-next';
 import Cali from "/hg/calibarn.jpg";
 import Rx from "/rg/Rx782.jpg";
 </script>
+
 <template>
   <!-- NavBar -->
   <div class="top-0 z-50 mx-10 mt-1 max-w-[1950px] select-none bg-white shadow-lg">
     <p class="text-md text-center font-semibold"><a
-        href="https://www.facebook.com/tiyodoryabutV2">www.facebook.com/tiyodoryabutV2</a></p>
+        href="https://www.instagram.com/tiyosgunpla/" target="_blank">Check This Out!!!</a></p>
     <p class="text-md text-center font-semibold">THIS IS A FAKE WEBSITE</p>
   </div>
   <div class="sticky top-0 z-50 mx-10 max-w-[1950px] select-none bg-white pt-2 shadow-lg">
@@ -80,7 +81,7 @@ import Rx from "/rg/Rx782.jpg";
 
               </div>
               <button class="ml-6 ">
-                <Trash2 />
+                <Trash2 color="#FF4646"/>
               </button>
             </div>
           </div>
@@ -110,7 +111,7 @@ import Rx from "/rg/Rx782.jpg";
 
               </div>
               <button class="ml-6 ">
-                <Trash2 />
+                <Trash2 color="#FF4646"/>
               </button>
             </div>
           </div>
@@ -124,8 +125,8 @@ import Rx from "/rg/Rx782.jpg";
           <p class="flex pl-5 text-gray-500">Tax included and shipping and discounts calculated at checkout</p>
           <div  class="pb-4 pt-4 mx-14">
             <router-link to="/checkout">
-            <button class="relative items-center text-lg border border-black border-solid rounded-3xl h-[45px]
-             w-full bg-white hover:border-2 hover:border-gray-400"  @click.self="closeSidebar">
+            <button class="relative items-center text-lg border border-blue-400 border-solid rounded-3xl h-[45px]
+             w-full bg-white hover:border-2 hover:border-blue-600"  @click.self="closeSidebar">
               Check out
             </button>
             </router-link>
@@ -192,9 +193,8 @@ import { ref } from 'vue';
 export default {
   data() {
     return {
-      show: false,
-      secondary: false
-    };
+      show: false
+        };
   },
   methods: {
     closeSidebar() {

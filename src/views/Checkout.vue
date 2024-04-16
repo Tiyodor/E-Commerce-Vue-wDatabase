@@ -15,7 +15,7 @@ import Rx from "/rg/Rx782.jpg";
                 <div class="border rounded-t-lg pt-2 bg-inherit">
                 <div class="flex items-center mb-4  px-4">
                     <input id="default-radio-1" type="radio" name="payment-method" value="bank-deposit"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600">
                     <label for="default-radio-1" class="ml-2 text-lg font-medium text-gray-900">Bank Deposit</label>
                 </div>
                 <div id="bank-details" class="hidden bg-[#f5f5f5] items-center w-full border-t-2 pl-52 pb-2">
@@ -32,7 +32,7 @@ import Rx from "/rg/Rx782.jpg";
                 <div class="border rounded-b-lg pt-2 bg-inherit">
                 <div class="flex items-center mb-4 px-4 ">
                     <input id="default-radio-2" type="radio" name="payment-method" value="online-payment"
-                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        class="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300  dark:bg-gray-700 dark:border-gray-600">
                     <label for="default-radio-2" class="ml-2 text-lg font-medium text-gray-900">Online Payment</label>
                 </div>
                 <div id="online-details" class="hidden bg-[#f5f5f5] items-center w-full pl-52 border-t-2 pb-2">
@@ -48,7 +48,7 @@ import Rx from "/rg/Rx782.jpg";
 
 
                 <p class="text-xl font-semibold">Billing Address</p>
-                <input type="text" id="fname" name="firstname" placeholder="First Name" class="w-1/2 pr-2" />
+                <input type="text" id="fname" name="firstname" placeholder="First Name" class="w-1/2" />
                 <input type="text" id="lname" name="lastname" placeholder="Last Name" class="w-1/2" />
                 <input type="text" id="address" name="address" placeholder="Address" class="w-full" />
                 <input type="text" id="postal" name="postal" placeholder="Postal Code" class="w-1/2" />
@@ -154,5 +154,9 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+select{
+    user-select: none;
 }
 </style>

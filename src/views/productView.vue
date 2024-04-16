@@ -44,15 +44,15 @@ import Cali from "/hg/calibarn.jpg";
             </div>
 
             <div  class="pb-3">
-            <button class=" relative items-center text-2xl border border-black border-solid rounded-3xl h-[50px]
-             w-full bg-white hover:border-2 hover:border-gray-400">
+            <button class=" relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px]
+             w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400">
               Add to cart
             </button>
             </div>
 
             <div  class="pb-3">
-            <button class="relative items-center text-2xl border border-black border-solid rounded-3xl h-[50px]
-             w-full bg-white hover:border-2 hover:border-gray-400">
+            <button class="relative items-center text-2xl border border-blue-600 border-solid rounded-3xl h-[50px]
+             w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400">
               Buy it now
             </button>
             </div>
