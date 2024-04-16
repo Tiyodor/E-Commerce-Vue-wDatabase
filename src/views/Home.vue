@@ -1,7 +1,4 @@
 <script setup>
-import slider1 from "/slide1.jpg";
-import slider2 from "/slide2.jpg";
-import slider3 from "/slide3.jpg";
 import Hg from "/scales/hg.png";
 import Rg from "/scales/rg.png";
 import Mg from "/scales/mg.png";
@@ -185,10 +182,15 @@ import Free from "/hg/freedom.jpg";
 
           <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+
+            <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
+
+
             <a href="#">
               <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="God" alt="" />
             </a>
             <div class="p-5">
+              
               <a href="#">
                 <h5 class="mb-2 text-lg font-bold">Rg God Gundam</h5>
                 <p class="mb-2 text-md">₱ 2600.00 </p>
@@ -248,8 +250,13 @@ import Free from "/hg/freedom.jpg";
 
           <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+
+            <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
+
             <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Air" alt="" />
+
+              <img class="rounded-t-lg p-5 w-[250px] h-[250px] flex" :src="Air" alt="" />
+              
             </a>
             <div class="p-5">
               <a href="#">

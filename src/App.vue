@@ -142,7 +142,7 @@ import Rx from "/rg/Rx782.jpg";
 
   <!--Footer-->
   
-  <div class="b-20 relative mx-10 mt-20 max-w-[1950px] select-none items-center border-t-[1px] border-gray-200 bg-[#f7f7f7] pb-5 pt-12">
+  <div class="b-20 relative mx-10 max-w-[1950px] select-none items-center border-t-[1px] border-gray-200 bg-[#f7f7f7] pb-5 pt-12">
     <div class="flex justify-evenly">
       <div class="relative justify-center text-lg">
         <p class="font-bold">Links</p>

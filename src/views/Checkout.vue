@@ -3,7 +3,7 @@ import Rx from "/rg/Rx782.jpg";
 </script>
 
 <template>
-    <div class="relative content-center mx-10">
+    <div class="relative content-center mx-10 select-none">
         <div class="grid grid-cols-2 gap-5">
 
             <div class="  relative ml-[250px] p-10">
@@ -54,8 +54,8 @@ import Rx from "/rg/Rx782.jpg";
                 <input type="text" id="postal" name="postal" placeholder="Postal Code" class="w-1/2" />
                 <input type="text" id="city" name="city" placeholder="City" class="w-1/2" />
                 <input type="number" id="phone" name="phone" placeholder="Phone" class="w-full" />
-                <button class="w-full rounded-md text-white h-12 bg-blue-500 mt-2"> Complete Order </button>
-
+                <router-link to="/complete"><button class="w-full rounded-md text-white h-12
+                 bg-blue-500 mt-2"> Complete Order </button></router-link>
             </div>
 
             <div class="relative bg-[#f5f5f5] p-10 border-l-2 border-gray-200">
