@@ -3,18 +3,26 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const product = ref({});
+const recommendedProducts = ref([]);  // Store recommended products
 const route = useRoute();
 const counter = ref(1);
 
 onMounted(async () => {
   const productId = route.params.id;
   await fetchProductData(productId);
+  await fetchRecommendedProducts();
 });
 
 async function fetchProductData(id) {
   const response = await fetch(`http://localhost:8000/api/products/${id}`);
   const data = await response.json();
   product.value = data;
+}
+
+async function fetchRecommendedProducts() {
+  const response = await fetch(`http://localhost:8000/api/recommended`);
+  const data = await response.json();
+  recommendedProducts.value = data;
 }
 
 const increase = () => {
@@ -25,6 +33,9 @@ const decrease = () => {
   if (counter.value > 1) counter.value--;
 };
 </script>
+
+
+<!--Fix the reload-->
 
 <template>
   <div class="relative content-center mx-10">
@@ -97,6 +108,33 @@ const decrease = () => {
     </section>
 
     <!-- Recommended Section -->
-    <!-- Implementation similar to previous example -->
+    <section>
+      <div class="pt-10 px-10 mx-[360px]  bg-white select-none">
+    <p class="font-semibold mx-[50px]  text-2xl">You may also like</p>
+
+    <div class="pt-10 grid grid-cols-5 gap-64 justify-center mx-10">
+      
+        <router-link v-for="product in recommendedProducts" :key="product.id" 
+            :to="`/product/${product.id}`"
+            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+            transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:underline">
+            <div class="relative">
+                <img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]" 
+                     :src="product.product_image" 
+                     alt="" />
+                <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4">
+                    Sold Out
+                </p>
+            </div>
+            <div class="p-5">
+                <a href="#">
+                    <h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+                    <p class="mb-2 text-md">Php {{ product.price }}</p>
+                </a>
+            </div>
+        </router-link>
+    </div>
+  </div>
+    </section>
   </div>
 </template>
