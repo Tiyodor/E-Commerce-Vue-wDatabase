@@ -9,7 +9,7 @@ const products = ref([]);
 const router = useRouter();
 
 onMounted(() => {
-    fetch('http://localhost:8000/api/products/shop')
+    fetch('http://localhost:8000/api/shop')
         .then(response => response.json())
         .then(data => {
             products.value = data;

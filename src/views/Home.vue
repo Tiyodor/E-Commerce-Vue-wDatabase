@@ -171,7 +171,8 @@ onMounted(() => {
 
     <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
       
-      <router-link v-for="product in products" :key="product.id" :to="`/product/${product.id}`"
+      <router-link v-for="product in products" :key="product.id" 
+      :to="`/product/${product.id}`"
     class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
     transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
 
