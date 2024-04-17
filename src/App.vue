@@ -1,12 +1,11 @@
 <script setup>
-import { Search } from 'lucide-vue-next';
-import { ShoppingBag } from 'lucide-vue-next';
-import { Trash2 } from 'lucide-vue-next';
+import { Search, ShoppingBag, Trash2, X } from 'lucide-vue-next';
 import Logo from '/GundFactory.png';
 import { RouterView } from "vue-router";
-import { X } from 'lucide-vue-next';
 import Cali from "/hg/calibarn.jpg";
 import Rx from "/rg/Rx782.jpg";
+
+
 </script>
 
 <template>

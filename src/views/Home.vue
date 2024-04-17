@@ -7,26 +7,20 @@ import Sd from "/scales/sd.png";
 import Eg from "/scales/eg.png";
 import Hirm from "/scales/hirm.png";
 import One from "/scales/1100.png";
-import Rx from "/rg/Rx782.jpg";
-import Nu from "/rg/nu.jpg";
-import God from "/rg/god.jpg";
-import Wing from "/rg/wing.jpg";
-import Epyon from "/rg/epyon.jpg";
-import Cali from "/hg/calibarn.jpg";
-import Air from "/hg/aerial.jpg";
-import Lfr from "/hg/lfrith.jpg";
-import Just from "/hg/justice.jpg";
-import Free from "/hg/freedom.jpg";
-import Ban from "/sd/ban.jpg";
-import Uni from "/sd/uni.jpg";
-import Phen from "/sd/phen.png";
-import Rxsd from "/sd/sdrx.webp";
-import Calisd from "/sd/cali.webp";
-import Nar from "/mg/nar.jpg";
-import Sin from "/mg/sin.webp";
-import Rxmg from "/mg/rx.jpg";
-import Wingmg from "/mg/wing.jpg";
-import Zeta from "/mg/zeta.jpg";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const products = ref([]);
+const router = useRouter();
+
+onMounted(() => {
+    fetch('http://localhost:8000/api/products/random')
+        .then(response => response.json())
+        .then(data => {
+            products.value = data;
+        })
+        .catch(error => console.error('Error:', error));
+});
 </script>
 
 <!--Fix On view show animation for home-->
@@ -58,6 +52,7 @@ import Zeta from "/mg/zeta.jpg";
         <p class="font-semibold text-[50px]">Scale Category</p>
         <div class="pt-10 grid grid-cols-4 gap-4 mx-60">
 
+
           <div class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <router-link to="/high-grade">
               <img class="rounded-t-lg p-5" :src="Hg" alt="" />
@@ -67,6 +62,7 @@ import Zeta from "/mg/zeta.jpg";
           </router-link>
           </div>
 
+          
           <div
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <router-link to="/real-grade">
@@ -168,244 +164,28 @@ import Zeta from "/mg/zeta.jpg";
       </div>
     </section>
 
-    <!-- RG section -->
+    <!--products-->
     <section>
-      <div class="pt-10 px-10 mx-[180px] bg-white">
-        <p class="font-semibold text-[50px]">Real Grade</p>
+  <div class="pt-10 px-10 mx-[180px] bg-white">
+    <p class="font-semibold text-[50px]">Products</p>
 
-        <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
-
-          <router-link to="/product"
-            class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a>
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Rg Rx-78-2 Ver 2.0</h5>
-                <p class="mb-2 text-md">₱ 2000.00 </p>
-              </a>
-            </div>
-          </router-link>
-
-
-          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nu" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Rg Rx93 Hi-Nu</h5>
-                <p class="mb-2 text-md">₱ 3200.00 </p>
-              </a>
-            </div>
-          </router-link>
-
-          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline grayscale">
-
-            <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
-
-
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="God" alt="" />
-            </a>
-            <div class="p-5">
-              
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Rg God Gundam</h5>
-                <p class="mb-2 text-md">₱ 2600.00 </p>
-              </a>
-            </div>
-          </router-link>
-
-          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Wing" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Rg Wing Gundam</h5>
-                <p class="mb-2 text-md">₱ 1900.00 </p>
-              </a>
-            </div>
-          </router-link>
-
-          <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Epyon" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Rg Epyon gundam</h5>
-                <p class="mb-2 text-md">₱ 2000.00 </p>
-              </a>
-            </div>
-          </router-link>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Hg Section -->
-    <section>
-      <div class="pt-10 px-10 mx-[180px] bg-white">
-        <p class="font-semibold text-[50px]">High Grade</p>
-
-        <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Cali" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Hg Calibarn Gundam</h5>
-                <p class="mb-2 text-md">₱ 1400.00 </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline grayscale">
-
-            <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
-
-            <a href="#">
-
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] flex" :src="Air" alt="" />
-              
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Hg Aerial</h5>
-                <p class="mb-2 text-md">₱ 1400.00 </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Lfr" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Hg Lfrith</h5>
-                <p class="mb-2 text-md">₱ 1800.00 </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Just" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Hg Immortal Justice</h5>
-                <p class="mb-2 text-md">₱ 1500.00 </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-            <a href="#">
-              <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Free" alt="" />
-            </a>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="mb-2 text-lg font-bold">Hg Rising Freedom</h5>
-                <p class="mb-2 text-md">₱ 1600.00 </p>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!--Mg Section-->
-    <section>
-      <div class="pt-10 px-10 mx-[180px] bg-white">
-        <p class="font-semibold text-[50px]">Master Grade</p>
-        <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
-
-          <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline grayscale">
-            <p class="bg-[#f5f5f5] w-20 shadow-md float-1 text-center text-sm absolute mt-6 ml-4">Sold Out</p>
-
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nar" alt="" />
-          
-          <div class="p-5">
-            
-              <h5 class="mb-2 text-lg font-bold">Mg Narrative Gundam</h5>
-              <p class="mb-2 text-md">₱ 3500.00 </p>
-          
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+    <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
+      <router-link v-for="product in products" :key="product.id" to="/product"
+        class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+        <a>
+          <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="product.product_image" alt="" />
+        </a>
+        <div class="p-5">
           <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Sin" alt="" />
+            <h5 class="mb-2 text-lg font-bold">{{ product.category }}  {{ product.name }} </h5>
+            <p class="mb-2 text-md">Php {{ product.price }}</p>
           </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Mg Sinanju Stein</h5>
-              <p class="mb-2 text-md">₱ 3700.00 </p>
-            </a>
-          </div>
         </div>
+      </router-link>
+    </div>
+  </div>
+</section>
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rxmg" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Mg Rx 78 2 Origin</h5>
-              <p class="mb-2 text-md">₱ 3000.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Wingmg" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Mg Wing Ver ka</h5>
-              <p class="mb-2 text-md">₱ 3200.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Zeta" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Mg Zeta</h5>
-              <p class="mb-2 text-md">₱ 3600.00 </p>
-            </a>
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
