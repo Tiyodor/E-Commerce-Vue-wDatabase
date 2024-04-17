@@ -170,19 +170,35 @@ onMounted(() => {
     <p class="font-semibold text-[50px]">Products</p>
 
     <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
-      <router-link v-for="product in products" :key="product.id" to="/product"
-        class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-        <a>
-          <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="product.product_image" alt="" />
-        </a>
-        <div class="p-5">
-          <a href="#">
-            <h5 class="mb-2 text-lg font-bold">{{ product.category }}  {{ product.name }} </h5>
-            <p class="mb-2 text-md">Php {{ product.price }}</p>
-          </a>
-        </div>
-      </router-link>
+      
+      <router-link v-for="product in products" :key="product.id" :to="`/product/${product.id}`"
+    class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+    transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+
+    <!-- Image container with relative positioning -->
+    <div class="relative">
+        <img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]" 
+             :src="product.product_image" 
+             alt="" />
+        <!-- Conditionally render the Sold Out tag if quantity is 0 -->
+        <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+            Sold Out
+        </p>
     </div>
+
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+            <p class="mb-2 text-md">Php {{ product.price }}</p>
+        </a>
+    </div>
+</router-link>
+
+
+
+    
+    </div>
+
   </div>
 </section>
 
@@ -251,6 +267,12 @@ export default {
 </script>
 
 <style scoped>
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+
 .carousel-container {
   position: relative;
   width: 100%;
