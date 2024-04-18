@@ -1,17 +1,27 @@
 <script setup>
-import Rx from "/rg/Rx782.jpg";
-import Nu from "/rg/nu.jpg";
-import God from "/rg/god.jpg";
-import Wing from "/rg/wing.jpg";
-import Epyon from "/rg/epyon.jpg";
 import { ArrowUpDown } from 'lucide-vue-next';
 import { List } from 'lucide-vue-next';
 import Rg from "/scales/rg.png";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+const products = ref([]);
+const router = useRouter();
 
+// Define the category
+const category = 'RG';
 
-
+onMounted(() => {
+    // Fetch products based on the category
+    fetch(`http://localhost:8000/api/products/category/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            products.value = data;
+        })
+        .catch(error => console.error('Error:', error));
+});
 </script>
+
 
 <template>
     <!--Categories-->
@@ -85,7 +95,7 @@ import Rg from "/scales/rg.png";
     <!--items-->
     <section>
         <div class="pt-10 px-10 mx-[180px] bg-white  select-none">
-          <img :src="Rg" class=" float-end h-32"/>
+          <img :src="Rg" class="pulse float-end h-32"/>
 
             <p class="flex font-semibold ml-[40px] text-[50px]">Shop - Real Grade</p>
 
@@ -95,75 +105,32 @@ import Rg from "/scales/rg.png";
                     <ArrowUpDown />
                 </button>
             </div>
+            
             <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
 
-                <router-link to="/product"
-                    class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-                    <a class="text-gray-400 hover:underline hover:text-black hover:text-lg" href="">
+                <router-link v-for="product in products" :key="product.id" 
+                :to="`/product/${product.id}`"
+    class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+    transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
 
-                        <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-lg font-bold">Rg Rx-78-2 Ver 2.0</h5>
-                            <p class="mb-2 text-md">₱ 2000.00 </p>
-                        </a>
-                    </div>
-                </router-link>
+    <!-- Image container with relative positioning -->
+    <div class="relative">
+        <img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]" 
+             :src="product.product_image" 
+             alt="" />
+        <!-- Conditionally render the Sold Out tag if quantity is 0 -->
+        <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+            Sold Out
+        </p>
+    </div>
 
-
-                <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-                    <a href="#">
-                        <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nu" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-lg font-bold">Rg Rx93 Hi-Nu</h5>
-                            <p class="mb-2 text-md">₱ 3200.00 </p>
-                        </a>
-                    </div>
-                </router-link>
-
-                <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-                    <a href="#">
-                        <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="God" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-lg font-bold">Rg God Gundam</h5>
-                            <p class="mb-2 text-md">₱ 2600.00 </p>
-                        </a>
-                    </div>
-                </router-link>
-
-                <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-                    <a href="#">
-                        <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Wing" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-lg font-bold">Rg Wing Gundam</h5>
-                            <p class="mb-2 text-md">₱ 1900.00 </p>
-                        </a>
-                    </div>
-                </router-link>
-
-                <router-link to="/product" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-                    <a href="#">
-                        <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Epyon" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-lg font-bold">Rg Epyon gundam</h5>
-                            <p class="mb-2 text-md">₱ 2000.00 </p>
-                        </a>
-                    </div>
-                </router-link>
-
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+            <p class="mb-2 text-md">Php {{ product.price }}</p>
+        </a>
+    </div>
+</router-link>
 
 
             </div>
@@ -211,4 +178,12 @@ import Rg from "/scales/rg.png";
     animation-name: fadeInUp;
     -webkit-animation-name: fadeInUp;
 }
+
+.pulse {
+    animation: pulse 1s infinite ease-in-out alternate;
+  }
+  @keyframes pulse {
+    from { transform: scale(0.98); }
+    to { transform: scale(1); }
+  }
 </style>

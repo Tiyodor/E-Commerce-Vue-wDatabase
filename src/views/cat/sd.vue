@@ -1,13 +1,25 @@
 <script setup>
-import Ban from "/sd/ban.jpg";
-import Uni from "/sd/uni.jpg";
-import Phen from "/sd/phen.png";
-import Rx from "/sd/sdrx.webp";
-import Cali from "/sd/cali.webp";
 import { ArrowUpDown } from 'lucide-vue-next';
 import { List } from 'lucide-vue-next';
 import Sd from "/scales/sd.png";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+const products = ref([]);
+const router = useRouter();
+
+// Define the category
+const category = 'SD';
+
+onMounted(() => {
+    // Fetch products based on the category
+    fetch(`http://localhost:8000/api/products/category/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            products.value = data;
+        })
+        .catch(error => console.error('Error:', error));
+});
 
 
 </script>
@@ -96,71 +108,30 @@ import Sd from "/scales/sd.png";
       </div>
       <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
 
+        
+        <router-link v-for="product in products" :key="product.id" 
+                :to="`/product/${product.id}`"
+    class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+    transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Cali" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Sdcs Calibarn Gundam</h5>
-              <p class="mb-2 text-md">₱ 1200.00 </p>
-            </a>
-          </div>
-        </div>
+    <!-- Image container with relative positioning -->
+    <div class="relative">
+        <img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]" 
+             :src="product.product_image" 
+             alt="" />
+        <!-- Conditionally render the Sold Out tag if quantity is 0 -->
+        <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+            Sold Out
+        </p>
+    </div>
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Uni" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Sdcs Unicorn</h5>
-              <p class="mb-2 text-md">₱ 1000.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Ban" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Sdcs Banshee</h5>
-              <p class="mb-2 text-md">₱ 1000.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Phen" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Sdcs Phenex</h5>
-              <p class="mb-2 text-md">₱ 1300.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Sdcs Rx-78-2</h5>
-              <p class="mb-2 text-md">₱ 1500.00 </p>
-            </a>
-          </div>
-        </div>
+    <div class="p-5">
+        <a href="#">
+            <h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+            <p class="mb-2 text-md">Php {{ product.price }}</p>
+        </a>
+    </div>
+</router-link>
 
       </div>
     </div>

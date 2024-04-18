@@ -20,7 +20,7 @@ const routes = [
   { path: '/product/:id', component: Pv, meta: { title: 'Product - GundFactory' }, props: true },  // Dynamic segment for product ID
   { path: '/shop', component: Shop, meta: { title: 'Shop - GundFactory' }},
   { path: '/about', component: About, meta: { title: 'About - GundFactory' }},
-  { path: '/checkout', component: Check, meta: { title: 'Checkout - GundFactory' }},
+  { path: '/checkout/:ids', component: Check, meta: { title: 'Checkout - GundFactory', props: true }},
   { path: '/complete', component: Complete, meta: { title: 'Thank you, username' }},
   { path: '/news', component: News, meta: { title: 'Practice' }},
   { path: '/high-grade', component: HG, meta: { title: 'Category - HG' }},

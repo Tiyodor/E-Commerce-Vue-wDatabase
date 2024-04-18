@@ -481,3 +481,146 @@ import Cali from "/hg/calibarn.jpg";
     </div>
   </div>
 </section>
+
+<section>
+   <transition name="slide">
+        <div v-if="show" class="sidebar flex-col min-h-screen select-none" @click.self="closeSidebar">
+          
+          <!--side bar view mostly top-->
+          <div class="mb-auto">
+          <div class=" inline-flex">
+            <p class="text-4xl pl-4 pb-9 pt-2 font-semibold ">Your Cart</p> <button class="mb-6 ml-72 "  @click="closeSidebar" >
+              <X />
+            </button>
+          </div>
+          <div class="space-x-[365px] flex pl-5 text-gray-500">
+
+            <a>Product</a>
+            <a>Total</a>
+          </div>
+          <div class="pt-10 grid grid-cols-2 mx-5 border-t-2 border-solid border-gray-200 mt-2 ">
+
+            <div id="prodImg">
+              <img class="rounded-2xl max-w-40 ml-4" :src="Rx" />
+            </div>
+
+            <div id="prodInfo">
+              <div class="inline-flex">
+                <p class="font-semibold text-[] pb-1 hover:underline">
+                  RG 1/144 RX-78-2 Gundam Ver.2.0
+                </p>
+
+                <h5 class="text-base relative pb-3">₱2000.0
+                </h5>
+              </div>
+
+              <div
+                class="relative z-0 h-[50px] w-[150px] items-center justify-around rounded-3xl border border-black border-solid bg-white inline-flex">
+                <button class="relative items-center text-3xl pb-2" @click="decrease">-</button>
+                <span> 1 </span>
+                <button class="relative text-2xl pb-2" @click="increase">+</button>
+
+              </div>
+              <button class="ml-6 ">
+                <Trash2 color="#FF4646"/>
+              </button>
+            </div>
+          </div>
+
+          <!--other item-->
+          <div class="pt-10 grid grid-cols-2 mx-5  mt-2 ">
+
+            <div id="prodImg">
+              <img class="rounded-2xl max-w-40 ml-4" :src="Cali" />
+            </div>
+
+            <div id="prodInfo">
+              <div class="inline-flex">
+                <p class="font-semibold text-[] pb-1 hover:underline">
+                  Hg Gundam Calibarn Witch From Mercury
+                </p>
+
+                <h5 class="text-base relative pb-3">₱1500.0
+                </h5>
+              </div>
+
+              <div
+                class="relative z-0 h-[50px] w-[150px] items-center justify-around rounded-3xl border border-black border-solid bg-white inline-flex">
+                <button class="relative items-center text-3xl pb-2" @click="decrease">-</button>
+                <span>1</span>
+                <button class="relative text-2xl pb-2" @click="increase">+</button>
+
+              </div>
+              <button class="ml-6 ">
+                <Trash2 color="#FF4646"/>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--siber bottom part-->
+        <div class="mt-auto">
+          <div class="space-x-[255px] flex pt-3 pb-3 border-t-2 border-solid border-gray-200 mx-5">
+          <p class="text-xl font-semibold ">Estimated total </p>
+          <p>₱3500.00</p>
+          </div>
+          <p class="flex pl-5 text-gray-500">Tax included and shipping and discounts calculated at checkout</p>
+          <div  class="pb-4 pt-4 mx-14">
+            <router-link to="/checkout">
+            <button class="relative items-center text-lg border border-blue-600 border-solid rounded-3xl h-[45px]
+             w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400"  @click.self="closeSidebar">
+              Check out
+            </button>
+            </router-link>
+            </div>
+        </div>
+        </div>
+      </transition>
+</section>
+
+<!--checkout backup-->
+
+<div id="prodImg">
+  <img class="rounded-2xl max-w-40 ml-4" :src="Rx" />
+</div>
+
+<div id="prodInfo" class="mt-14">
+  <div class="flex">
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <p class="font-semibold  pb-1">
+          RG 1/144 RX-78-2 Gundam Ver.2.0
+      </p>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <h5 class="text-base pb-3">₱2000.0
+      </h5>
+  </div>
+</div>
+
+<!--controller products-->
+public function checkout($ids)
+    {
+        $productIds = explode(',', $ids); // Assuming IDs are comma-separated
+
+        $products = [];
+
+        foreach ($productIds as $id) {
+            $product = Product::find($id);
+
+            if ($product) {
+                $product->product_image = url('/images/' . $product->product_image);
+                $products[] = $product;
+            }
+        }
+
+        if (empty($products)) {
+            return response()->json([
+                'message' => 'Products not found'
+            ], 404);
+        }
+
+        return response()->json($products);
+    }

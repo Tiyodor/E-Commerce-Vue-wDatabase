@@ -1,13 +1,25 @@
 <script setup>
-import Cali from "/hg/calibarn.jpg";
-import Air from "/hg/aerial.jpg";
-import Lfr from "/hg/lfrith.jpg";
-import Just from "/hg/justice.jpg";
-import Free from "/hg/freedom.jpg";
 import { ArrowUpDown } from 'lucide-vue-next';
 import { List } from 'lucide-vue-next';
 import Others from "/scales/1100.png";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+const products = ref([]);
+const router = useRouter();
+
+// Define the category
+const category = '1100';
+
+onMounted(() => {
+  // Fetch products based on the category
+  fetch(`http://localhost:8000/api/products/category/${category}`)
+    .then(response => response.json())
+    .then(data => {
+      products.value = data;
+    })
+    .catch(error => console.error('Error:', error));
+});
 
 
 </script>
@@ -24,7 +36,7 @@ import Others from "/scales/1100.png";
       <div class="border-t-2 border-solid border-gray-200 pt-5">
         <ul class="space-y-5 max-w-md list-inside">
           <li>
-            <router-link to="/shop" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/shop" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
               All
             </router-link>
           </li>
@@ -34,44 +46,44 @@ import Others from "/scales/1100.png";
             </router-link>
           </li>
           <li>
-            <router-link to="/high-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/high-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               High Grade
             </router-link>
           </li>
           <li>
-            <router-link to="/real-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/real-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               Real Grade
             </router-link>
           </li>
           <li>
-            <router-link to="/master-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/master-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               Master Grade
             </router-link>
           </li>
 
           <li>
-            <router-link to="/super-deformed" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/super-deformed" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               Super Deformed
             </router-link>
           </li>
           <li>
-            <router-link to="/perfect-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/perfect-grade" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               Perfect Grade
             </router-link>
           </li>
           <li>
-            <router-link to="/hires" class="text-gray-400 hover:underline hover:text-black hover:text-lg" >
+            <router-link to="/hires" class="text-gray-400 hover:underline hover:text-black hover:text-lg">
 
               Hi-Resolution
             </router-link>
           </li>
           <li>
-            <router-link to="/others" class="underline text-black hover:text-lg" >
+            <router-link to="/others" class="underline text-black hover:text-lg">
 
               1/100
             </router-link>
@@ -84,7 +96,7 @@ import Others from "/scales/1100.png";
   <!--items-->
   <section>
     <div class="pt-10 px-10 mx-[180px] bg-white  select-none">
-      <img :src="Others" class=" float-end h-32"/>
+      <img :src="Others" class=" float-end h-32" />
 
       <p class="flex font-semibold ml-[40px] text-[50px]">Shop - 1/100</p>
 
@@ -94,73 +106,31 @@ import Others from "/scales/1100.png";
           <ArrowUpDown />
         </button>
       </div>
+
       <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
 
+        <router-link v-for="product in products" :key="product.id" :to="`/product/${product.id}`" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Cali" alt="" />
-          </a>
+          <!-- Image container with relative positioning -->
+          <div class="relative">
+            <img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]"
+              :src="product.product_image" alt="" />
+            <!-- Conditionally render the Sold Out tag if quantity is 0 -->
+            <p v-if="product.quantity === 0"
+              class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+              Sold Out
+            </p>
+          </div>
+
           <div class="p-5">
             <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Calibarn Gundam</h5>
-              <p class="mb-2 text-md">₱ 1400.00 </p>
+              <h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+              <p class="mb-2 text-md">Php {{ product.price }}</p>
             </a>
           </div>
-        </div>
+        </router-link>
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Air" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Aerial</h5>
-              <p class="mb-2 text-md">₱ 1400.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Lfr" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Lfrith</h5>
-              <p class="mb-2 text-md">₱ 1800.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Just" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Immortal Justice</h5>
-              <p class="mb-2 text-md">₱ 1500.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Free" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Hg Rising Freedom</h5>
-              <p class="mb-2 text-md">₱ 1600.00 </p>
-            </a>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -170,41 +140,41 @@ import Others from "/scales/1100.png";
 
 <style scoped>
 @keyframes fadeInUp {
-    from {
-        transform: translate3d(0,40px,0)
-    }
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
 
-    to {
-        transform: translate3d(0,0,0);
-        opacity: 1
-    }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
 }
 
 @-webkit-keyframes fadeInUp {
-    from {
-        transform: translate3d(0,40px,0)
-    }
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
 
-    to {
-        transform: translate3d(0,0,0);
-        opacity: 1
-    }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
 }
 
 .animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-fill-mode: both
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both
 }
 
 .animatedFadeInUp {
-    opacity: 0
+  opacity: 0
 }
 
 .fadeInUp {
-    opacity: 0;
-    animation-name: fadeInUp;
-    -webkit-animation-name: fadeInUp;
+  opacity: 0;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
 }
 </style>

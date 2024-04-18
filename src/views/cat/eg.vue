@@ -1,12 +1,25 @@
 <script setup>
-import Rx from "/eg/egrx.jpg";
-import Nu from "/eg/nu.jpg";
-import Str from "/eg/str.jpg";
-import Strg from "/eg/strg.jpeg";
 import { ArrowUpDown } from 'lucide-vue-next';
 import { List } from 'lucide-vue-next';
 import Eg from "/scales/eg.png";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+const products = ref([]);
+const router = useRouter();
+
+// Define the category
+const category = 'EG';
+
+onMounted(() => {
+    // Fetch products based on the category
+    fetch(`http://localhost:8000/api/products/category/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            products.value = data;
+        })
+        .catch(error => console.error('Error:', error));
+});
 
 
 
@@ -98,61 +111,32 @@ import Eg from "/scales/eg.png";
 
       <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
 
+<router-link v-for="product in products" :key="product.id" 
+:to="`/product/${product.id}`"
+class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
+transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Rx" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Eg Rx-78-2 Gundam</h5>
-              <p class="mb-2 text-md">₱ 700.00 </p>
-            </a>
-          </div>
-        </div>
+<!-- Image container with relative positioning -->
+<div class="relative">
+<img :class="['rounded-t-lg p-5  w-[250px] h-[250px] flex', { 'grayscale': product.quantity === 0 }]" 
+:src="product.product_image" 
+alt="" />
+<!-- Conditionally render the Sold Out tag if quantity is 0 -->
+<p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+Sold Out
+</p>
+</div>
 
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Nu" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Eg Nu Gundam</h5>
-              <p class="mb-2 text-md">₱ 799.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Str" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Eg Strike</h5>
-              <p class="mb-2 text-md">₱ 600.00 </p>
-            </a>
-          </div>
-        </div>
-
-        <div class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-            transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
-          <a href="#">
-            <img class="rounded-t-lg p-5 w-[250px] h-[250px] ob flex" :src="Strg" alt="" />
-          </a>
-          <div class="p-5">
-            <a href="#">
-              <h5 class="mb-2 text-lg font-bold">Eg Strike Galaxy</h5>
-              <p class="mb-2 text-md">₱ 799.00 </p>
-            </a>
-          </div>
-        </div>
+<div class="p-5">
+<a href="#">
+<h5 class="mb-2 text-lg font-bold">{{ product.category }} {{ product.name }}</h5>
+<p class="mb-2 text-md">Php {{ product.price }}</p>
+</a>
+</div>
+</router-link>
 
 
-      </div>
+</div>
     </div>
   </section>
 
