@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-
 const products = ref([]);
 const total = ref(0);
 const route = useRoute();
@@ -27,13 +26,53 @@ function calculateTotal() {
     total.value = products.value.reduce((acc, product) => acc + parseFloat(product.price), 0);
 }
 
+// Form data
+const formData = ref({
+    email: '',
+    paymentMethod: '',
+    bankAccountName: '',
+    bankAccountNumber: '',
+    bankName: '',
+    gcashNumber: '',
+    mayaNumber: '',
+    paypalNumber: '',
+    firstname: '',
+    lastname: '',
+    address: '',
+    postal: '',
+    city: '',
+    phone: ''
+});
 
-const totalPrice = ref(0);
+// Method to update payment method and show corresponding section
+function updatePaymentMethod(method) {
+    formData.value.paymentMethod = method;
+}
 
-
-// Update total price
-
+// Function to submit form data
+async function submitForm() {
+    try {
+        const response = await fetch('/weborders/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData.value)
+        });
+        if (response.ok) {
+            console.log('Order successfully placed!');
+            // Redirect or show success message here
+        } else {
+            console.error('Failed to submit order:', response.statusText);
+            // Handle error
+        }
+    } catch (error) {
+        console.error('Error submitting order:', error.message);
+        // Handle error
+    }
+}
 </script>
+
 
 <template>
     <div class="relative content-center mx-10 select-none">
@@ -50,7 +89,9 @@ const totalPrice = ref(0);
       <div class="border rounded-t-lg pt-2 bg-inherit">
                     <div class="flex items-center mb-4  px-4">
                         <input id="default-radio-1" type="radio" name="payment-method" value="bank-deposit"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600">
+    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
+    @change="updatePaymentMethod('bank-deposit')"
+>
                         <label for="default-radio-1" class="ml-2 text-lg font-medium text-gray-900">Bank Deposit</label>
                     </div>
                     <div id="bank-details" class="hidden bg-[#f5f5f5] items-center w-full border-t-2 pl-52 pb-2">
@@ -67,7 +108,10 @@ const totalPrice = ref(0);
                 <div class="border rounded-b-lg pt-2 mb-6 bg-inherit">
                     <div class="flex items-center mb-4 px-4 ">
                         <input id="default-radio-2" type="radio" name="payment-method" value="online-payment"
-                            class="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300  dark:bg-gray-700 dark:border-gray-600">
+    class="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300  dark:bg-gray-700 dark:border-gray-600"
+    @change="updatePaymentMethod('online-payment')"
+>
+
                         <label for="default-radio-2" class="ml-2 text-lg font-medium text-gray-900">Online
                             Payment</label>
                     </div>
