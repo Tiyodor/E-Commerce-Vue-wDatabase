@@ -1,6 +1,35 @@
 <script setup>
 import Rx from "/rg/Rx782.jpg";
 import { CircleCheckBig } from 'lucide-vue-next';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const checkout = ref({});
+const route = useRoute();
+
+onMounted(async () => {
+  try {
+    // Fetch product data when component is mounted
+    await fetchOrderData(route.params.id);
+  } catch (error) {
+    console.error('Error fetching order data:', error);
+  }
+});
+
+async function fetchOrderData(checkoutid) {
+  try {
+    const response = await fetch(`http://localhost:8000/api/order/success/${checkoutid}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    checkout.value = data;
+    console.log('Fetched order data:', data); // Log the fetched data
+  } catch (error) {
+    console.error('Error fetching order data:', error);
+  }
+}
+
 </script>
 
 <template>
@@ -12,8 +41,8 @@ import { CircleCheckBig } from 'lucide-vue-next';
                <div class="inline-flex right-12 relative mb-6">
                 <CircleCheckBig color="#327efc" class="relative right-4 size-12" />
                 <div class="relative">
-                <p class="text-sm">Order #here</p>
-               <p class="text-2xl">Thank you, User's name!</p>
+                <p class="text-sm">Order #{{checkout.id}}</p>
+               <p class="text-2xl">Thank you, {{checkout.fname}} {{checkout.lname}}!</p>
             </div>
 
             </div>

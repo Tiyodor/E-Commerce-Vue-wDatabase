@@ -21,7 +21,7 @@ const routes = [
   { path: '/shop', component: Shop, meta: { title: 'Shop - GundFactory' }},
   { path: '/about', component: About, meta: { title: 'About - GundFactory' }},
   { path: '/checkout/:ids', component: Check, meta: { title: 'Checkout - GundFactory', props: true }},
-  { path: '/complete', component: Complete, meta: { title: 'Thank you, username' }},
+  { path: '/order/success/:checkoutid', component: Complete, meta: { title: 'Thank you, username', props: true}},
   { path: '/news', component: News, meta: { title: 'Practice' }},
   { path: '/high-grade', component: HG, meta: { title: 'Category - HG' }},
   { path: '/real-grade', component: RG, meta: { title: 'Category - RG' }},

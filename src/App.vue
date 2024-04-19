@@ -138,8 +138,9 @@ import Footer from "./components/footer.vue";
     </div>
 
   </div>
-
-  <RouterView />
+  <div class="app-body">
+    <RouterView />
+  </div>
 
   <!--Footer-->
   
@@ -164,6 +165,10 @@ export default {
 </script>
 
 <style scoped>
+.app-body{
+  min-height:100vh;
+}
+
 .sidebar {
   position: fixed;
   right: 0;
