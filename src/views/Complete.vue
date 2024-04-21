@@ -9,9 +9,9 @@ const route = useRoute();
 
 onMounted(async () => {
   try {
-    // Fetch product data when component is mounted
-    await fetchOrderData(route.params.id);
-  } catch (error) {
+    await fetchOrderData(route.params.checkoutid);
+  } 
+  catch (error) {
     console.error('Error fetching order data:', error);
   }
 });
@@ -24,7 +24,7 @@ async function fetchOrderData(checkoutid) {
     }
     const data = await response.json();
     checkout.value = data;
-    console.log('Fetched order data:', data); // Log the fetched data
+    console.log('Fetched order data:', data);
   } catch (error) {
     console.error('Error fetching order data:', error);
   }
@@ -38,11 +38,11 @@ async function fetchOrderData(checkoutid) {
 
             <div class="  relative ml-[250px] p-10">
                
-               <div class="inline-flex right-12 relative mb-6">
+               <div class="inline-flex right-12 relative mb-6" >
                 <CircleCheckBig color="#327efc" class="relative right-4 size-12" />
                 <div class="relative">
-                <p class="text-sm">Order #{{checkout.id}}</p>
-               <p class="text-2xl">Thank you, {{checkout.fname}} {{checkout.lname}}!</p>
+                <p class="text-sm">Order #{{ checkout.id }}</p>
+               <p class="text-2xl">Thank you, {{ checkout.fname }} {{ checkout.lname }}!</p>
             </div>
 
             </div>
@@ -59,11 +59,10 @@ async function fetchOrderData(checkoutid) {
              <div class="flex">
                 <div class="relative p-3 w-1/2"> 
                     <p class="font-semibold">Contact information </p>   
-                    <p> elijahtheodoreyabut@gmail.com</p>  
+                    <p> {{ checkout.email }}</p>  
                    <p class="font-semibold"> Billing address </p>
                         <p> Elijah Theodore Yabut</p>
-                        <p> 21 C Santos St. Ugong Pasig City</p>
-                        <p> Barangay Ugong</p>
+                        <p> {{ checkout.fname }} {{ checkout.lname }}</p>
                         <p> 1604 pasig city</p>
                         <p> 00</p>
                         <p> Philippines</p>
@@ -91,71 +90,39 @@ async function fetchOrderData(checkoutid) {
                 </button></router-link>
 
             </div>
-
-            <!--product side-->
-            <div class="relative bg-[#f5f5f5] p-10 border-l-2 border-gray-200">
-
-                <div class="product flex mb-10">
-                    <div id="prodImg">
-                        <img class="rounded-2xl max-w-40 ml-4" :src="Rx" />
-                    </div>
-
-                    <div id="prodInfo" class="mt-14">
-                        <div class="flex">
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <p class="font-semibold  pb-1">
-                                RG 1/144 RX-78-2 Gundam Ver.2.0
-                            </p>
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <h5 class="text-base pb-3">₱2000.0
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="product flex">
-                    <div id="prodImg">
-                        <img class="rounded-2xl max-w-40 ml-4" :src="Rx" />
-                    </div>
-
-                    <div id="prodInfo" class="mt-14">
-                        <div class="flex">
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <p class="font-semibold  pb-1">
-                                RG 1/144 RX-78-2 Gundam Ver.2.0
-                            </p>
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <h5 class="text-base pb-3">₱2000.0
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="inline-flex pt-4 border-t-2 border-gray-200 mt-6 ">
-                    <p class="text-xl mr-[410px] font-semibold">Total: </p>
-                    <p class="text-lg">₱4000.00 </p>
-
-                </div>
-            </div>
+<!-- Product side -->
+<div class="relative bg-[#f5f5f5] p-10 border-l-2 border-gray-200">
+    <div v-for="(product, index) in checkout.products" :key="index" class="product flex mb-10">
+      <div id="prodImg">
+        <img class="rounded-2xl max-w-40 " :src="product.image" alt="Product Image" />
+      </div>
+      <div id="prodInfo" class="mt-14">
+        <div class="ml-16 space-x-16 grid grid-col-6 gap-4">
+          <div class="col-start-1">
+            <p class="font-bold text-lg pb-1">{{ product.category }} {{ product.name }}</p>
+          </div>
+          <div class="col-start-2">
+            <h5 class="text-lg pb-3 text-end">₱{{ product.price }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inline-flex pt-4 border-t-2 border-gray-200 mt-6 text-end">
+      <p class="text-xl mr-[410px] font-semibold">Total: </p>
+      <p class="text-lg font-bold">₱{{ checkout.total }}</p>
+    </div>
+  </div>
 
         </div>
     </div>
 </template>
 
 <script>
-
+export default {
+  props: {
+    checkout: Object 
+  }
+};
 </script>
 
 

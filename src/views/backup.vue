@@ -624,3 +624,45 @@ public function checkout($ids)
 
         return response()->json($products);
     }
+
+
+    <!--for mock data-->
+
+    onMounted(async () => {
+  try {
+    // Mock data for testing
+const mockData = {
+  id: 123,
+  fname: "John",
+  lname: "Doe",
+  email: "john.doe@example.com",
+  address: {
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    postalCode: "12345",
+    country: "USA"
+  },
+  paymentMethod: "Credit Card",
+  totalAmount: 4000,
+  products: [
+    {
+      id: 1,
+      name: "Product 1",
+      price: 2000,
+      imageUrl: "/path/to/image1.jpg"
+    },
+    {
+      id: 2,
+      name: "Product 2",
+      price: 2000,
+      imageUrl: "/path/to/image2.jpg"
+    }
+  ]
+};
+    checkout.value = mockData;
+    console.log('Mock data:', checkout.value);
+  } catch (error) {
+    console.error('Error fetching order data:', error);
+  }
+});
