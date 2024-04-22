@@ -28,11 +28,11 @@ onMounted(() => {
 
 <template>
   
-  <div class="relative content-center mx-10 select-none">
+  <div class="relative content-center md:mx-10 select-none">
     
     <!-- Carousel section-->
     <section>
-      <div id="default-carousel-container" class="carousel-container" data-carousel="slide">
+      <div id="default-carousel-container" class="carousel-container " data-carousel="slide">
     <!-- Carousel wrapper -->
     <div id="car">
       <transition name="fade" mode="out-in">
@@ -48,16 +48,16 @@ onMounted(() => {
 
     <!-- Category section -->
     <section>
-      <div class="pt-10 px-10 mx-[180px] bg-white ">
-        <p class="font-semibold text-[50px]">Scale Category</p>
-        <div class="pt-10 grid grid-cols-4 gap-4 mx-60">
+      <div class="pt-10 md:px-10 md:mx-[180px] bg-white ">
+        <p class="font-semibold md:text-[50px]">Scale Category</p>
+        <div class="pt-10 grid grid-cols-4 gap-4 md:mx-60">
 
 
           <div class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <router-link to="/high-grade">
               <img class="rounded-t-lg p-5" :src="Hg" alt="" />
             <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold">High Grade</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">High Grade</h5>
             </div>
           </router-link>
           </div>
@@ -71,7 +71,7 @@ onMounted(() => {
           
             <div class="p-5">
             
-                <h5 class="mb-2 text-2xl font-bold">Real Grade</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">Real Grade</h5>
 
             </div>
             </router-link>
@@ -85,7 +85,7 @@ onMounted(() => {
            
             <div class="p-5">
              
-                <h5 class="mb-2 text-2xl font-bold">Master Grade</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">Master Grade</h5>
          
             </div>
             </router-link>
@@ -95,11 +95,11 @@ onMounted(() => {
             class="mb-5 max-w-sm rounded-lg border border-black max-h-sm bg-white shadow transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <router-link to="/super-deformed">
 
-              <img class="rounded-t-lg p-5 max-w-[199px]" :src="Sd" alt="" />
+              <img class="rounded-t-lg p-5 md:max-w-[199px]" :src="Sd" alt="" />
            
             <div class="p-5">
              
-                <h5 class="mb-2 text-2xl font-bold">Super Deformed</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">Super Deformed</h5>
               
             </div>
             </router-link>
@@ -113,7 +113,7 @@ onMounted(() => {
            
             <div class="p-5">
               
-                <h5 class="mb-2 text-2xl font-bold">Perfect Grade</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">Perfect Grade</h5>
               
             </div>
             </router-link>
@@ -127,7 +127,7 @@ onMounted(() => {
            
             <div class="p-5">
              
-                <h5 class="mb-2 text-2xl font-bold">1/100 scale</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">1/100 scale</h5>
             
             </div>
             </router-link>
@@ -141,7 +141,7 @@ onMounted(() => {
             
             <div class="p-5">
               
-                <h5 class="mb-2 text-2xl font-bold">High Resolution</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">High Res</h5>
              
             </div>
             </router-link>
@@ -154,7 +154,7 @@ onMounted(() => {
               <img class="rounded-t-lg p-5 max-w-md container" :src="Eg" alt="" />
             
             <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold">Entry Grade</h5>
+                <h5 class="mb-2 md:text-2xl font-bold">Entry Grade</h5>
              
             </div>
             </router-link>
@@ -166,10 +166,10 @@ onMounted(() => {
 
     <!--products-->
     <section>
-  <div class="pt-10 px-10 mx-[180px] bg-white">
-    <p class="font-semibold text-[50px]">Products</p>
+  <div class="pt-10 md:px-10 md:mx-[180px] bg-white">
+    <p class="font-semibold md:text-[50px]">Products</p>
 
-    <div class="pt-10 grid grid-cols-5 gap-5 mx-10">
+    <div class="pt-10 grid md:grid-cols-5 md:gap-5 md:mx-10 justify-center">
       
       <router-link v-for="product in products" :key="product.id" 
       :to="`/product/${product.id}`"

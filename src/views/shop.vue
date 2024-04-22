@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
     <!--Categories-->
     <section>
-        <div class="top-80 z-0 absolute px-20  select-none">
+        <div class="md:top-80 z-0 absolute md:px-20  select-none">
         <div class="inline-flex pb-5">
             <List />  <router-link to="">
              Categories 

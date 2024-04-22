@@ -1,5 +1,4 @@
 <script setup>
-import Rx from "/rg/Rx782.jpg";
 import { CircleCheckBig } from 'lucide-vue-next';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -61,23 +60,17 @@ async function fetchOrderData(checkoutid) {
                     <p class="font-semibold">Contact information </p>   
                     <p> {{ checkout.email }}</p>  
                    <p class="font-semibold"> Billing address </p>
-                        <p> Elijah Theodore Yabut</p>
                         <p> {{ checkout.fname }} {{ checkout.lname }}</p>
-                        <p> 1604 pasig city</p>
-                        <p> 00</p>
-                        <p> Philippines</p>
-                        <p> 09666517365</p>
+                        <p> {{ checkout.address }} {{ checkout.city }}</p>
+                        <p> {{ checkout.postal }}</p>
+                        <p> {{ checkout.phone }}</p>
                 </div>
                 <div class="relative p-3 w-1/2"> 
                     <p class="font-semibold"> Payment method</p>
-                    <p> Bank Deposit - ₱400.00</p>
-                    <p> Bank Details</p>
-                    <p>BPI</p>
-                    <p>Elijah Theodore Yabut</p>
-                    <p>Account number - XXXX-XXXX-XXXX</p>
-                    <p>Sea Bank</p>
-                    <p>Elijah Theodore Yabut</p>
-                    <p>Account number - XXXX-XXXX-XXXX</p>
+                    <p> {{ checkout.payment }}- ₱{{checkout.total }}</p>
+                    <router-link to="/payment-method">
+                      <a class="hover:underline">Payment click here to pay with your corresponding payment method</a>
+                    </router-link>
                        
                 </div>
              </div>

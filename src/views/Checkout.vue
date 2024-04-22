@@ -151,9 +151,10 @@ function submitForm() {
                     <input type="text" v-model="formData.fname" placeholder="First Name" class="w-1/2" />
                     <input type="text" v-model="formData.lname" placeholder="Last Name" class="w-1/2" />
                     <input type="text" v-model="formData.address" placeholder="Address" class="w-full" />
-                    <input type="number" v-model="formData.postal" placeholder="Postal Code" class="w-1/2" />
+                    <input type="number" v-model="formData.postal" placeholder="Postal Code" 
+                    maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="w-1/2" />
                     <input type="text" v-model="formData.city" placeholder="City" class="w-1/2" />
-                    <input type="number" v-model="formData.phone" placeholder="Phone" class="w-full" />
+                    <input type="phone" v-model="formData.phone" placeholder="Phone" maxlength="11" size="11" class="w-full" />
                     
                     <button type="submit" class="w-full rounded-md text-white h-12 bg-blue-500 mt-2">Complete Order</button>
 
@@ -190,6 +191,7 @@ function submitForm() {
 <style scoped>
 input[type=text],
 input[type=number],
+input[type=phone],
 select {
     padding: 14px 22px;
     margin: 8px 0;
