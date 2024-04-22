@@ -1,14 +1,46 @@
 <script setup>
-import { Search, ShoppingBag, AlignJustify } from 'lucide-vue-next';
+import { ref, watch } from 'vue';
+import { Search, ShoppingBag, Trash2, X, AlignJustify } from 'lucide-vue-next';
 import Logo from '/GundFactory.png';
+import { useStore } from 'vuex';
 
-const showMenu = ref(false);
+const store = useStore();
+const show = ref(false);
+const selectedProduct = ref(null);
+
+watch(() => store.state.showSidebar, (newValue) => {
+  show.value = newValue;
+});
+
+watch(() => store.state.selectedProduct, (newValue) => {
+  selectedProduct.value = newValue;
+});
 
 const toggleMenu = () => {
-  showMenu.value = !showMenu.value;
+  store.state.showSidebar = !store.state.showSidebar;
 };
 
+const toggleShoppingBag = () => {
+  store.state.showSidebar = !store.state.showSidebar;
+};
 
+const removeFromCart = (index) => {
+  store.commit('removeFromCart', index);
+};
+
+const cartItems = computed(() => store.getters.cartItems);
+const total = computed(() => store.getters.cartTotal);
+
+const closeSidebar = () => {
+  store.state.showSidebar = false;
+};
+
+const checkout = () => {
+  if (selectedProduct.value) {
+    router.push(`/checkout/${selectedProduct.value.id}`);
+    closeSidebar();
+  }
+};
 </script>
 
 <template>
@@ -44,16 +76,14 @@ const toggleMenu = () => {
           <button className="ml-20 mr-10 cursor-pointer inline-block transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
             <Search />
           </button>
-          <button
-        className="cursor-pointer inline-block transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
-        @click="show = !show, secondary = false">
-        <ShoppingBag />
-      </button> 
+          <button class="cursor-pointer inline-block transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110" @click="toggleShoppingBag">
+      <ShoppingBag />
+    </button>
      
         </div>  <!-- Cart Sidebar -->
     <div>
       <transition name="slide">
-        <div v-if="show" class="sidebar flex-col min-h-screen select-none md:flex md:w-[400px]" @click.self="closeSidebar">
+        <div v-if="show" class="sidebar  flex-col min-h-screen select-none md:flex md:w-[400px]" @click.self="closeSidebar">
           
           <!--side bar view mostly top-->
           <div class="mb-auto">
@@ -69,53 +99,48 @@ const toggleMenu = () => {
             <a>Total</a>
           </div>
 
-          <div class="pt-10 grid grid-cols-2 mx-5 border-t-2 border-solid border-gray-200 mt-2 ">
-            <div name="cart" v-for="(product, index) in products" :key="index" class="product flex mb-10">
+          <div class="pt-10 mx-5 border-t-2 border-solid border-gray-200 mt-2">
+  <div v-for="(product, index) in cartItems" :key="index" class="product flex mb-10">
+    <div id="prodImg">
+      <img class="rounded-2xl max-w-40 ml-4" :src="product.product_image" />
+    </div>
 
-            <div id="prodImg">
-              <img class="rounded-2xl max-w-40 ml-4" :src="product.product_image" />
-            </div>
-
-            <div id="prodInfo">
-              <div class="inline-flex">
-                <p class="font-semibold text-[] pb-1 hover:underline">
-                  {{ product.category }} {{ product.name }}
-                </p>
-
-                <h5 class="text-base relative pb-3">₱{{ product.price }}
-                </h5>
-              </div>
-
-              <div
-                class="relative z-0 h-[50px] w-[150px] items-center justify-around rounded-3xl border border-black border-solid bg-white inline-flex">
-                <button class="relative items-center text-3xl pb-2" @click="decrease">-</button>
-                <span> 1 </span>
-                <button class="relative text-2xl pb-2" @click="increase">+</button>
-
-              </div>
-              <button class="ml-6 ">
-                <Trash2 color="#FF4646"/>
-              </button>
-            </div>
-            </div>
-          </div>
+    <div id="prodInfo" class="ml-4">
+      <p class="font-semibold text-lg pb-1 hover:underline">
+        {{ product.category }} {{ product.name }}
+      </p>
+      <div class="inline-flex">
+        <h5 class="text-base relative pb-3">₱{{ product.price }}</h5>
+      </div>
+      <br>
+      <div class="relative z-0 h-[50px] w-[150px] items-center justify-around rounded-3xl border border-black border-solid bg-white inline-flex">
+        <button class="relative items-center text-3xl pb-2" @click="decrease">-</button>
+        <span> 1 </span>
+        <button class="relative text-2xl pb-2" @click="increase">+</button>
+      </div>
+      <button class="ml-6 " @click="removeFromCart(index)">
+  <Trash2 color="#FF4646"/>
+</button>
+    </div>
+  </div>
+</div>
 
         
         </div>
         <!--siber bottom part-->
-        <div class="mt-auto">
+        <div class="">
           <div class="space-x-[255px] flex pt-3 pb-3 border-t-2 border-solid border-gray-200 mx-5">
           <p class="text-xl font-semibold ">Estimated total </p>
           <p>{{ total }}</p>
           </div>
           <p class="flex pl-5 text-gray-500">Tax included and shipping and discounts calculated at checkout</p>
           <div  class="pb-4 pt-4 mx-14">
-            <router-link to="/order/sucess/">
-            <button class="relative items-center text-lg border border-blue-600 border-solid rounded-3xl h-[45px]
-             w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400"  @click.self="closeSidebar">
-              Check out
-            </button>
-            </router-link>
+            <router-link v-if="selectedProduct" :to="`/checkout/${selectedProduct.value.id}`">
+        <button class="absolute items-center text-lg border border-blue-600 border-solid rounded-3xl h-[45px] w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400" @click="checkout">
+          Check out
+        </button>
+      </router-link>
+
             </div>
         </div>
         </div>
@@ -133,21 +158,33 @@ const toggleMenu = () => {
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
-  data() {
-    return {
-      show: false
-        };
-  },
-  methods: {
-    closeSidebar() {
-      this.show = false;
-    }
-  }
+  setup() {
+  const store = useStore();
+  const show = computed(() => store.state.showSidebar);
+  const selectedProduct = computed(() => store.state.selectedProduct.value);
+
+  watch(() => store.state.showSidebar, (newValue) => {
+    show.value = newValue;
+  });
+
+  const closeSidebar = () => {
+    store.state.showSidebar = false;
+  };
+
+  return {
+    show,
+    selectedProduct,
+    closeSidebar
+  };
 }
+
+};
 </script>
+
 
 <style scoped>
 

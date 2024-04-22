@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
 
 const product = ref({});
 const recommendedProducts = ref([]);
@@ -38,17 +39,12 @@ const decrease = () => {
   if (counter.value > 1) counter.value--;
 };
 
-const addToCart = () => {
-  const cartData = {
-    id: product.value.id,
-    name: product.value.name,
-    price: product.value.price,
-    product_image: product.value.product_image,
-    quantity: counter.value
-  };
-  // Emit event with cartData
-  emit('addToCart', cartData);
+const store = useStore();
+
+const selectProduct = (product) => {
+  store.commit('addToCart', product);
 };
+
 </script>
 
 
@@ -100,23 +96,25 @@ const addToCart = () => {
                 <button class="relative text-5xl pb-3" @click="increase">+</button>
               </div>
             </div>
-            
+
             <div class="pb-3">
-              <button class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400"
-               @click="addToCart">
-               Add to cart
-    1       </button>
+             <button
+  class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400"
+  @click="selectProduct(product)">
+  Add to cart
+</button>
+
             </div>
 
             <div class="pb-3">
               <router-link :to="`/checkout/${product.id}`">
-               <div  class="relative items-center text-2xl border border-blue-600 border-solid rounded-3xl
-                 h-[50px] w-full  bg-white hover:border-2  hover:border-blue-700 hover:bg-blue-400 text-center" >
-               <p class="mt-1"> Buy it now </p>
-              </div>
+                <div class="relative items-center text-2xl border border-blue-600 border-solid rounded-3xl
+                 h-[50px] w-full  bg-white hover:border-2  hover:border-blue-700 hover:bg-blue-400 text-center">
+                  <p class="mt-1"> Buy it now </p>
+                </div>
               </router-link>
             </div>
-            
+
             <!-- <h4 class="pb-1 text-2xl font-bold">{{ product.availability }}</h4> -->
             <h4 class="pb-1">{{ product.details }}</h4>
             <h4 class="pb-7 font-bold text-lg opacity-65">***Shipping fees are not included in all pre-order items.***
@@ -125,14 +123,17 @@ const addToCart = () => {
               <h4>Please read the following link for more info.</h4>
               <ul class="max-w-md list-inside space-y-2">
                 <li>
-            <router-link to="/terms&conditions" class="text-gray-400 hover:underline hover:text-black">Terms and Conditions</router-link>
-          </li>
-          <li>
-            <router-link to="/payment-method" class="text-gray-400 hover:underline  hover:text-black">Payment Method</router-link>
-          </li>
-          <li>
-            <router-link to="/shipping-policy" class="text-gray-400 hover:underline  hover:text-black">Shipping Policy</router-link>
-          </li>
+                  <router-link to="/terms&conditions" class="text-gray-400 hover:underline hover:text-black">Terms and
+                    Conditions</router-link>
+                </li>
+                <li>
+                  <router-link to="/payment-method" class="text-gray-400 hover:underline  hover:text-black">Payment
+                    Method</router-link>
+                </li>
+                <li>
+                  <router-link to="/shipping-policy" class="text-gray-400 hover:underline  hover:text-black">Shipping
+                    Policy</router-link>
+                </li>
               </ul>
             </div>
             <h3 class="font-bold text-lg pb-1">Should you have any question or item/s inquiry, please send us a message.
@@ -181,3 +182,22 @@ const addToCart = () => {
     </section>
   </div>
 </template>
+
+
+<script>
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+
+    const selectProduct = (product) => {
+      store.commit('setSelectedProduct', product);
+    };
+
+    return {
+      selectProduct, // Make sure to export the function from the setup
+    };
+  },
+};
+</script>
