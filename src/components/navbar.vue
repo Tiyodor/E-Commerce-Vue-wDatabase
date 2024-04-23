@@ -161,7 +161,7 @@ const closeSidebar = () => {
         Check out
       </button>
     </router-link> -->
-    <router-link v-if="selectedProduct && show" :to="`/checkouts/${selectedProduct.id}`" @click="closeSidebar">
+    <router-link v-if="selectedProduct && show" :to="`/checkouts`" @click="closeSidebar">
     <button class="relative items-center text-lg border border-blue-600 border-solid rounded-3xl h-[45px] w-full bg-white hover:border-2 hover:border-blue-700 hover:bg-blue-400" @click="toggleCheckout(selectedProduct.id)">
       Check out
     </button>

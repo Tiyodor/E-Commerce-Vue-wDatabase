@@ -6,6 +6,20 @@ const products = ref([]);
 const total = ref(0);
 const route = useRoute();
 const router = useRouter();
+// Retrieve the product data from localStorage
+const productData = JSON.parse(localStorage.getItem('productData'));
+
+// Check if productData exists and is an array
+if (Array.isArray(productData) && productData.length > 0) {
+    // Extract the product IDs from the productData array
+    const productIds = productData.map(product => product.id);
+
+    // Fetch product data based on the product IDs
+    fetchProductData(productIds);
+} else {
+    console.error('Product data not found in localStorage or is invalid');
+}
+
 
 // Fetch product data whenever route changes
 watch(() => route.params.ids, async (newIds) => {
@@ -69,6 +83,7 @@ const formData = ref({
 });
 
 function submitForm() {
+    
     // Set the payment method in formData
     formData.value.payment = document.querySelector('input[name="payment"]:checked').value;
 
@@ -102,6 +117,9 @@ function submitForm() {
                 path: '/order/success/' + data.checkout_id,
             });
 
+            // Clear the products from localStorage
+            localStorage.removeItem('productData');
+
             // console.log(data); // Log the response from the server (for testing)
             // Optionally, you can handle success response here (e.g., show a success message)
         })
@@ -113,6 +131,7 @@ function submitForm() {
         console.error('Products or total are not yet defined.');
     }
 }
+
 </script>
 
 <template>
@@ -226,56 +245,48 @@ import { useRoute, useRouter } from 'vue-router';
 
 export default {
     
-  setup() {
-    const route = useRoute();
-    const router = useRouter();
-    const productId = localStorage.getItem('selectedProductId');
-
-    // Fetch product data whenever the component is mounted or the product ID changes
-    watchEffect(() => {
-      if (productId) {
-        fetchProductData(productId);
-      }
-    });
-
-    
-
+    setup() {
     const products = ref([]);
     const total = ref(0);
 
-    async function fetchProductData(productId) {
-      console.log('Fetching product data for ID:', productId);
-      try {
-        const response = await fetch(`http://localhost:8000/api/products/${productId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch product data');
+    // Fetch product data from localStorage
+    const fetchProductData = () => {
+        try {
+            // Retrieve product data from localStorage
+            const productData = JSON.parse(localStorage.getItem('productData'));
+            
+            // Check if productData exists and is an array
+            if (Array.isArray(productData) && productData.length > 0) {
+                // Update products variable with fetched product data
+                products.value = productData;
+
+                // Recalculate total
+                calculateTotal();
+            } else {
+                console.error('Product data not found in localStorage or is invalid');
+            }
+        } catch (error) {
+            console.error('Error fetching product data:', error);
         }
-        const product = await response.json();
-        console.log('Received product data:', product);
-        
-        // Update products array with the fetched product
-        products.value = [product];
+    };
 
-        // Recalculate total
-        calculateTotal();
-      } catch (error) {
-        console.error('Error fetching product data:', error);
-      }
-    }
+    // Function to calculate total
+    const calculateTotal = () => {
+        total.value = products.value.reduce((acc, product) => acc + parseFloat(product.price), 0);
+    };
 
-    function calculateTotal() {
-      total.value = products.value.reduce((acc, product) => acc + parseFloat(product.price), 0);
-    }
+    // Fetch product data when the component is mounted
+    onMounted(fetchProductData);
 
     // Other form submission logic...
 
     return {
-      products,
-      total,
-      submitForm
+        products,
+        total,
+        submitForm
     };
-    
-  }
+}
+
 };
 
 </script>
