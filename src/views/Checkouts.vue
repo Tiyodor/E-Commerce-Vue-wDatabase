@@ -20,15 +20,26 @@ onMounted(async () => {
 async function fetchProductData(ids) {
     console.log('Fetching product data for IDs:', ids);
     try {
-        const response = await fetch(`http://localhost:8000/api/products/checkout/${ids}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch product data');
+        // Retrieve product data from local storage
+        const storedData = JSON.parse(localStorage.getItem('productData'));
+        
+        // Check if data exists
+        if (!storedData) {
+            throw new Error('Product data not found in local storage');
         }
-        const data = await response.json();
-        console.log('Received product data:', data);
+        
+        // Filter the stored data based on provided IDs
+        const filteredData = storedData.filter(product => ids.includes(product.id));
+
+        // Check if all IDs were found
+        if (filteredData.length !== ids.length) {
+            throw new Error('Some product data not found in local storage');
+        }
+        
+        console.log('Received product data:', filteredData);
         
         // Update products variable
-        products.value = data;
+        products.value = filteredData;
 
         // Recalculate total
         calculateTotal();
@@ -37,9 +48,12 @@ async function fetchProductData(ids) {
     }
 }
 
+// Function to calculate total
 function calculateTotal() {
     total.value = products.value.reduce((acc, product) => acc + parseFloat(product.price), 0);
 }
+
+// fetchProductData([101, 97]);
 
 const formData = ref({
     email: '',
@@ -205,3 +219,63 @@ select {
     user-select: none;
 }
 </style>
+
+<script>
+import { ref, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+export default {
+    
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const productId = localStorage.getItem('selectedProductId');
+
+    // Fetch product data whenever the component is mounted or the product ID changes
+    watchEffect(() => {
+      if (productId) {
+        fetchProductData(productId);
+      }
+    });
+
+    
+
+    const products = ref([]);
+    const total = ref(0);
+
+    async function fetchProductData(productId) {
+      console.log('Fetching product data for ID:', productId);
+      try {
+        const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch product data');
+        }
+        const product = await response.json();
+        console.log('Received product data:', product);
+        
+        // Update products array with the fetched product
+        products.value = [product];
+
+        // Recalculate total
+        calculateTotal();
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    }
+
+    function calculateTotal() {
+      total.value = products.value.reduce((acc, product) => acc + parseFloat(product.price), 0);
+    }
+
+    // Other form submission logic...
+
+    return {
+      products,
+      total,
+      submitForm
+    };
+    
+  }
+};
+
+</script>

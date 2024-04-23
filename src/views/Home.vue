@@ -49,7 +49,7 @@ onMounted(() => {
     <!-- Category section -->
     <section>
       <div class="pt-10 md:px-10 md:mx-[180px] bg-white ">
-        <p class="font-semibold md:text-[50px]">Scale Category</p>
+        <p class="font-semibold md:text-[50px] text-center">Scale Category</p>
         <div class="pt-10 grid grid-cols-4 gap-4 md:mx-60">
 
 
@@ -166,8 +166,9 @@ onMounted(() => {
 
     <!--products-->
     <section>
-  <div class="pt-10 md:px-10 md:mx-[180px] bg-white">
-    <p class="font-semibold md:text-[50px]">Products</p>
+  <div class="pt-10 md:px-10 md:mx-[180px] text-center bg-white">
+    <p class="font-semibold md:text-[50px]">Random Products</p>
+    <router-link to="/shop"><a class="hover:underline text-gray-400 hover:text-black text-2xl">For more click here</a></router-link>
 
     <div class="pt-10 grid md:grid-cols-5 md:gap-5 md:mx-10 justify-center">
       
@@ -182,7 +183,7 @@ onMounted(() => {
              :src="product.product_image" 
              alt="" />
         <!-- Conditionally render the Sold Out tag if quantity is 0 -->
-        <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-center text-sm absolute top-6 left-4 ">
+        <p v-if="product.quantity === 0" class="bg-[#f5f5f5] w-20 shadow-md text-sm absolute top-6 left-4 ">
             Sold Out
         </p>
     </div>
@@ -294,7 +295,7 @@ export default {
   max-width: 100%;
   /* width: 1950px;
   max-height: 100%; */
-  height: 800px;
+  height: 750px;
 }
 
 .carousel-controls {

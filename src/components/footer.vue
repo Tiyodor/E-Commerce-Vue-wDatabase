@@ -52,5 +52,8 @@ const TailImage = "/tail.png";
 <style scoped>
 .footer {
   margin-top: auto;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 </style>

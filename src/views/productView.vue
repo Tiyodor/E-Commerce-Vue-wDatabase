@@ -52,11 +52,11 @@ const selectProduct = (product) => {
 <!--Fix the reload-->
 
 <template>
-  <div class="relative content-center mx-10">
+  <div class="relative content-center md:mx-10">
     <!-- Product Info -->
     <section>
-      <div class="pt-10 px-10 mx-[180px] select-none">
-        <div class="pt-10 grid grid-cols-2 gap-20 mx-60">
+      <div class="pt-10 md:px-10 md:mx-[180px] select-none">
+        <div class="pt-10 md:grid md:grid-cols-2 md:gap-20 md:mx-60">
           <!-- Image -->
           <div id="prodImg">
             <img class="rounded-2xl w-full" :src="product.product_image" alt="Product Image" />
@@ -90,19 +90,19 @@ const selectProduct = (product) => {
             <div class="pb-3">
               <h5 class="text-base pb-1">Quantity</h5>
               <div
-                class="relative z-0 flex h-[50px] w-[150px] items-center justify-around rounded-3xl border border-black border-solid bg-white">
-                <button class="relative items-center text-6xl pb-4" @click="decrease">-</button>
+                class="relative z-0 flex h-[50px] w-[150px] items-center justify-around rounded-3xl ml-32 border border-black border-solid bg-white">
+                <button class="relative items-center text-6xl mt-5 pb-4" @click="decrease">-</button>
                 <span>{{ counter }}</span>
-                <button class="relative text-5xl pb-3" @click="increase">+</button>
+                <button class="relative text-5xl mt-3 pb-3" @click="increase">+</button>
               </div>
             </div>
 
             <div class="pb-3">
-             <button
-  class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400"
-  @click="selectProduct(product)">
-  Add to cart
-</button>
+              <button
+                class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400"
+                @click="selectProduct(product)">
+                Add to cart
+              </button>
 
             </div>
 
@@ -155,10 +155,10 @@ const selectProduct = (product) => {
 
     <!-- Recommended Section -->
     <section>
-      <div class="pt-10 px-10 mx-[360px]  bg-white select-none">
-        <p class="font-semibold mx-[50px]  text-2xl">You may also like</p>
+      <div class="pt-10 px-10 md:mx-[360px]  bg-white select-none">
+        <p class="font-semibold md:mx-[50px]  md:text-2xl">You may also like</p>
 
-        <div class="pt-10 grid grid-cols-5 gap-64 justify-center mx-10">
+        <div class="pt-10 grid md:grid-cols-5 md:gap-64 justify-center mx-10">
 
           <router-link v-for="product in recommendedProducts" :key="product.id" :to="`/product/${product.id}`" class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
             transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:underline">

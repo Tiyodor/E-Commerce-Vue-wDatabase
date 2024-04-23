@@ -4,6 +4,7 @@ import Pv from '../views/productView.vue';
 import Shop from '../views/shop.vue';
 import About from '../views/about.vue';
 import Check from '../views/Checkout.vue';
+import Checks from '../views/Checkouts.vue';
 import Complete from '../views/Complete.vue';
 import News from '../views/News.vue';
 import HG from '../views/cat/hg.vue';
@@ -23,7 +24,8 @@ const routes = [
   { path: '/product/:id', component: Pv, meta: { title: 'Product - GundFactory' }, props: true },  // Dynamic segment for product ID
   { path: '/shop', component: Shop, meta: { title: 'Shop - GundFactory' }},
   { path: '/about', component: About, meta: { title: 'About - GundFactory' }},
-  { path: '/checkout/:ids', component: Check, meta: { title: 'Checkout - GundFactory', props: true }},
+  { path: '/checkouts/:ids', name: 'Checkouts', component: Checks,meta: { title: 'Checkouts - GundFactory', props: true } }, 
+  { path: '/checkout/:ids', name: 'Checkout', component: Check, meta: { title: 'Checkout - GundFactory', props: true }},
   { path: '/order/success/:checkoutid', component: Complete, meta: { title: 'Thank you, come again', props: true}},
   { path: '/news', component: News, meta: { title: 'News - GundFactory' }},
   { path: '/shipping-policy', component: SHIPPING, meta: { title: 'Shipping Policy - GundFactory' }},

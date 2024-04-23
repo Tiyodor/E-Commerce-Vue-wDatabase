@@ -28,7 +28,7 @@ onMounted(() => {
              </router-link>
         </div>
         <div class="border-t-2 border-solid border-gray-200 pt-5"> 
-          <ul class="space-y-5 max-w-md list-inside">
+          <ul class="space-y-5 md:smax-w-md list-inside">
           <li>
             <router-link to="/shop" class=" underline text-black hover:text-lg" >
               All
@@ -89,23 +89,18 @@ onMounted(() => {
     
     <!--items-->
         <section>
-      <div class="pt-10 px-10 mx-[180px] bg-white  select-none ">
+      <div class="pt-10 px-10 md:mx-[180px] bg-white  select-none ">
         <img :src="Gunpla" class=" float-end h-32"/>
 
                   <p class="flex font-semibold ml-[40px] text-[50px]">Shop</p>
 
-            <div class="inline-flex ml-[40px] mb-2"> 
-            <p>Sort</p> <!--can sort by availability and price-->
-            <button> 
-                <ArrowUpDown />
-            </button>
-             </div>
-             <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
+           
+             <div class="pt-10 grid md:grid-cols-5 md:gap-50 md:mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
               
                 <router-link v-for="product in products" :key="product.id" 
                 :to="`/product/${product.id}`"
     class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-    transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:underline">
+    transition ease-in-out delay-10 hover:-translate-y-1  hover:scale-110 hover:underline">
 
     <!-- Image container with relative positioning -->
     <div class="relative">
