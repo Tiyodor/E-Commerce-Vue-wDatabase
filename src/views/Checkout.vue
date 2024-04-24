@@ -161,13 +161,13 @@ function submitForm() {
                 </div>
 
                 <!-- Product side -->
-                <div class="relative bg-[#f5f5f5] md:p-10 border-l-2 border-gray-200">
+                <div class="relative bg-[#f5f5f5] items-center md:p-10 border-l-2 border-gray-200">
                     <div v-for="(product, index) in products" :key="index" class="product flex mb-10">
                         <div id="prodImg">
                             <img class="rounded-2xl max-w-40 " :src="product.product_image" alt="Product Image" />
                         </div>
                         <div id="prodInfo" class="mt-14">
-                            <div class="ml-16 md:space-x-16 md:grid md:grid-col-6 md:gap-4">
+                            <div class="ml-16 flex md:space-x-36 md:grid md:grid-col-6 md:gap-4">
                                 <div class="col-start-1">
                                     <p class="font-bold text-lg pb-1">{{ product.category }} {{ product.name }}</p>
                                 </div>

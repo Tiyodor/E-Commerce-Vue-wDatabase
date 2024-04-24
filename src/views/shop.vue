@@ -100,7 +100,7 @@ onMounted(() => {
                 <router-link v-for="product in products" :key="product.id" 
                 :to="`/product/${product.id}`"
     class="mb-5 relative w-[250px] rounded-lg border border-black max-h-sm bg-white shadow 
-    transition ease-in-out delay-10 hover:-translate-y-1  hover:scale-110 hover:underline">
+    transition ease-in-out delay-10 hover:-translate-y-1  hover:scale-110 hover:underline" >
 
     <!-- Image container with relative positioning -->
     <div class="relative">

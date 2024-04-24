@@ -195,13 +195,8 @@ onMounted(() => {
         </a>
     </div>
 </router-link>
-
-
-
-    
     </div>
-
-  </div>
+ </div>
 </section>
 
   </div>

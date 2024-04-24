@@ -4,7 +4,8 @@ import { Search, ShoppingBag, Trash2, X, AlignJustify } from 'lucide-vue-next';
 import Logo from '/GundFactory.png';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-
+import { toggleSearch } from './Search.vue';
+import Searchbar from './Search.vue';
 
 const store = useStore();
 const showMenu = ref(false); // Define the showMenu property
@@ -57,15 +58,17 @@ const closeSidebar = () => {
 
 <template>
 
-  <div class="nav top-0 z-50 md:mx-10 mt-1 md:max-w-[1950px] select-none bg-white shadow-lg">
+  <div class="nav top-0 z-50 md:mx-10 mt-1 md:max-w-auto select-none bg-white shadow-lg">
     <p class="text-md text-center font-semibold hover:underline">
       <a href="https://www.instagram.com/tiyosgunpla/" target="_blank">Check This Out!!!</a>
     </p>
     <p class="text-md text-center font-semibold">THIS IS A FAKE WEBSITE</p>
   </div>
 
-  <div class="sticky justify-center md:flex top-0 z-50 md:mx-10 max-w-[1950px] select-none bg-white pt-2 shadow-lg">
+  <div class="sticky justify-center md:flex top-0 z-40 md:mx-10 max-w-[1950px] select-none bg-white pt-2 shadow-lg">
+   
     <div class="align-center md:mr-[150px] flex justify-center text-xl">
+      <Searchbar />
       <button class="navbar-toggle md:hidden" @click="toggleMenu">
         <AlignJustify />
       </button>
@@ -90,7 +93,9 @@ const closeSidebar = () => {
 
       <div class="navbar-icons md:mt-2">
         <button
-          className="ml-20 mr-10 cursor-pointer inline-block transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110">
+          className="ml-20 mr-10 cursor-pointer inline-block transition 
+          ease-in-out delay-10 hover:-translate-y-1 
+          hover:scale-110"  @click="toggleSearch">
           <Search />
         </button>
         <button class="cursor-pointer inline-block transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110"
@@ -98,10 +103,14 @@ const closeSidebar = () => {
           <ShoppingBag />
         </button>
 
-      </div> <!-- Cart Sidebar -->
+      </div> 
+      
+      
+      <!-- Cart Sidebar -->
+
       <div>
         <transition name="slide">
-          <div v-if="show" class="sidebar flex-col min-h-screen select-none flex md:w-[500px] "
+          <div v-if="show" class="sidebar  flex-col min-h-screen select-none flex md:w-[500px] "
             @click.self="closeSidebar">
 
             <!--side bar view mostly top-->
@@ -177,8 +186,9 @@ const closeSidebar = () => {
         <div class="overlay" v-if="show" @click="closeSidebar"></div>
       </div>
     </div>
-
+ 
   </div>
+
 
 
 
