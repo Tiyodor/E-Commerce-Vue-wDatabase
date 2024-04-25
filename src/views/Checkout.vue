@@ -5,6 +5,7 @@ import { useRoute, useRouter } from 'vue-router';
 const products = ref([]);
 const total = ref(0);
 const route = useRoute();
+const outOfStock = ref(false); 
 const router = useRouter();
 
 // Fetch product data whenever route changes
@@ -27,6 +28,8 @@ async function fetchProductData(ids) {
         const data = await response.json();
         console.log('Received product data:', data);
         
+        outOfStock.value = data.some(product => product.quantity === 0);
+
         // Update products variable
         products.value = data;
 
@@ -157,6 +160,7 @@ function submitForm() {
                     <input type="phone" v-model="formData.phone" placeholder="Phone" maxlength="11" size="11" class="md:w-full" />
                     
                     <button type="submit" class="md:w-full rounded-md text-white h-12 bg-blue-500 mt-2">Complete Order</button>
+                    <div v-if="outOfStock" class="text-red-500 mt-2">The product you selected is out of stock.</div>
 
                 </div>
 
@@ -166,8 +170,9 @@ function submitForm() {
                         <div id="prodImg">
                             <img class="rounded-2xl max-w-40 " :src="product.product_image" alt="Product Image" />
                         </div>
-                        <div id="prodInfo" class="mt-14">
+                        <div v-if="product.quantity > 0" id="prodInfo" class="mt-14">
                             <div class="ml-16 md:space-x-16 md:grid md:grid-col-6 md:gap-4">
+                                <!-- Product details -->
                                 <div class="col-start-1">
                                     <p class="font-bold text-lg pb-1">{{ product.category }} {{ product.name }}</p>
                                 </div>
@@ -176,6 +181,7 @@ function submitForm() {
                                 </div>
                             </div>
                         </div>
+                        <div v-else class="text-red-500">Out of stock</div>
                     </div>
                     <div class="md:inline-flex pt-4 border-t-2 border-gray-200 mt-6 text-end">
                         <p class="text-xl md:mr-[410px] font-semibold">Total: </p>

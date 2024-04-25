@@ -2,12 +2,13 @@
 import { RouterView } from "vue-router";
 import Footer from "./components/footer.vue";
 import Nav from "./components/navbar.vue";
-
+import Search from "./components/Search.vue";
 
 </script>
 
 <template>
   <!-- NavBar -->
+  <Search />
  <Nav />
 
   <div class="app-body">

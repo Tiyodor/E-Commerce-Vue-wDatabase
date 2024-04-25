@@ -64,7 +64,7 @@ const closeSidebar = () => {
     <p class="text-md text-center font-semibold">THIS IS A FAKE WEBSITE</p>
   </div>
 
-  <div class="sticky justify-center md:flex top-0 z-50 md:mx-10 max-w-[1950px] select-none bg-white pt-2 shadow-lg">
+  <div class="sticky justify-center md:flex top-0 z-40 md:mx-10 max-w-[1950px] select-none bg-white shadow-lg">
     <div class="align-center md:mr-[150px] flex justify-center text-xl">
       <button class="navbar-toggle md:hidden" @click="toggleMenu">
         <AlignJustify />
