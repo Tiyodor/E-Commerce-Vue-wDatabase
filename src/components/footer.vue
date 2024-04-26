@@ -27,7 +27,7 @@ const TailImage = "/tail.png";
           <p class="font-bold">Contact us</p>
           <ul class="max-w-md list-inside space-y-2">
             <li>
-              <a class="text-gray-400" href="https://www.facebook.com/pinoymandelaepekz/">Facebook: <span class="font-semibold text-black hover:underline">facebook.com/gundfactory</span></a>
+              <a class="text-gray-400" href="https://www.facebook.com/">Facebook: <span class="font-semibold text-black hover:underline">facebook.com/gundfactory</span></a>
             </li>
             <li>
               <a class="text-gray-400" href="">Email: <span class="font-semibold text-black hover:underline">gundfactory@gmail.com</span></a>

@@ -88,32 +88,39 @@ const selectProduct = (product) => {
             </h4>
 
             <div class="pb-3">
-              <h5 class="text-base pb-1">Quantity</h5>
-              <div
-                class="relative z-0 flex h-[50px] w-[150px] items-center justify-around rounded-3xl ml-32 border border-black border-solid bg-white">
-                <button class="relative items-center text-6xl mt-5 pb-4" @click="decrease">-</button>
-                <span>{{ counter }}</span>
-                <button class="relative text-5xl mt-3 pb-3" @click="increase">+</button>
-              </div>
-            </div>
+    <h5 class="text-base pb-1">Quantity</h5>
+    <div class="relative z-0 flex h-[50px] w-[150px] items-center justify-around rounded-3xl ml-32 border border-black border-solid bg-white">
+      <button class="relative items-center text-6xl mt-5 pb-4" @click="decrease" :disabled="product.quantity === 0">-</button>
+      <span>{{ product.quantity === 0 ? 0 : counter }}</span>
+      <button class="relative text-5xl mt-3 pb-3" @click="increase" :disabled="product.quantity === 0">+</button>
+    </div>
+  </div>
 
-            <div class="pb-3">
-              <button
-                class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400"
-                @click="selectProduct(product)">
-                Add to cart
-              </button>
+  <div class="pb-3" v-if="product.quantity > 0">
+  <button class="relative items-center text-2xl border border-yellow-600 border-solid rounded-3xl h-[50px] w-full bg-white hover:border-2 hover:border-yellow-700 hover:bg-yellow-400" @click="selectProduct(product)">
+    Add to cart
+  </button>
+</div>
+<div v-else class="pb-3">
+  <div class="relative items-center text-2xl border border-gray-600 border-solid rounded-3xl h-[50px] w-full bg-gray-300 text-gray-500 text-center cursor-not-allowed">
+    Add to cart
+  </div>
+</div>
 
-            </div>
 
-            <div class="pb-3">
-              <router-link :to="`/checkout/${product.id}`">
-                <div class="relative items-center text-2xl border border-blue-600 border-solid rounded-3xl
-                 h-[50px] w-full  bg-white hover:border-2  hover:border-blue-700 hover:bg-blue-400 text-center">
-                  <p class="mt-1"> Buy it now </p>
-                </div>
-              </router-link>
-            </div>
+  <div v-if="product.quantity > 0" class="pb-3">
+    <router-link :to="`/checkout/${product.id}`">
+      <div class="relative items-center text-2xl border border-blue-600 border-solid rounded-3xl h-[50px] w-full  bg-white hover:border-2  hover:border-blue-700 hover:bg-blue-400 text-center">
+        <p class="mt-1"> Buy it now </p>
+      </div>
+    </router-link>
+  </div>
+  <div v-else class="pb-3">
+    <div class="relative items-center text-2xl border border-gray-600 border-solid rounded-3xl h-[50px] w-full bg-gray-300 text-gray-500 text-center cursor-not-allowed">
+      <p class="mt-1"> Buy it now </p>
+    </div>
+  </div>
+
 
             <!-- <h4 class="pb-1 text-2xl font-bold">{{ product.availability }}</h4> -->
             <h4 class="pb-1">{{ product.details }}</h4>
@@ -196,7 +203,7 @@ export default {
     };
 
     return {
-      selectProduct, // Make sure to export the function from the setup
+      selectProduct, 
     };
   },
 };

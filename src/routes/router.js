@@ -18,6 +18,7 @@ import SD from '../views/cat/sd.vue';
 import PAYMENT from '../views/payment.vue';
 import TERMS from '../views/terms.vue';
 import SHIPPING from '../views/shipping.vue';
+import Searchview from '../views/Searchview.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -39,6 +40,8 @@ const routes = [
   { path: '/hires', component: HIRES, meta: { title: 'Category - HIRES' }},
   { path: '/entry-grade', component: EG, meta: { title: 'Category - EG' }},
   { path: '/super-deformed', component: SD, meta: { title: 'Category - SD' }},
+  { path: '/products/search', component: Searchview, meta: { title: 'Search' }},
+
 ];
 
 const router = createRouter({

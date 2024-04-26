@@ -77,10 +77,10 @@ async function fetchOrderData(checkoutid) {
                 </div>
                 
 
-                <router-link to="/">
+                <a href="/">
                 <button class=" bg-blue-500 mt-2 w-1/2 float-end rounded-md text-white md:h-12">
                 Continue Shopping 
-                </button></router-link>
+                </button></a>
 
             </div>
 <!-- Product side -->

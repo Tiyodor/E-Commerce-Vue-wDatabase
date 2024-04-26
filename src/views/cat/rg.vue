@@ -98,13 +98,6 @@ onMounted(() => {
           <img :src="Rg" class="pulse float-end h-32"/>
 
             <p class="flex font-semibold ml-[40px] text-[50px]">Shop - Real Grade</p>
-
-            <div class="inline-flex ml-[40px] mb-2">
-                <p>Sort</p> <!--can sort by availability and price-->
-                <button>
-                    <ArrowUpDown />
-                </button>
-            </div>
             
             <div class="pt-10 grid grid-cols-5 gap-50 mx-10 w-full bg-[#f6f6f6] p-10 animated animatedFadeInUp fadeInUp">
 

@@ -79,7 +79,7 @@ const closeSidebar = () => {
       </div>
       <div class="navbar-menu md:mx-32">
 
-        <ul :class="{ 'navbar-links-active': showMenu }" class="navbar-links">
+        <ul :class="{ 'navbar-links-active': showMenu }" class="text-2xl navbar-links">
           <li class="md:m-10 inline-block"><router-link to="/"><button
                 class="cursor-pointer hover:underline">Home</button></router-link></li>
           <li class="md:m-10 inline-block"><router-link to="/shop"><button

@@ -2,7 +2,6 @@
 import { RouterView } from "vue-router";
 import Footer from "./components/footer.vue";
 import Nav from "./components/navbar.vue";
-import Searchbar from "./components/Search.vue";
 
 
 </script>
@@ -10,6 +9,7 @@ import Searchbar from "./components/Search.vue";
 <template>
   
   <!-- NavBar -->
+  <Search />
  <Nav />
  <!-- <Searchbar />  -->
 

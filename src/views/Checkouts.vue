@@ -115,6 +115,7 @@ function submitForm() {
             // data.checkout_id
             router.push({ 
                 path: '/order/success/' + data.checkout_id,
+                
             });
 
             // Clear the products from localStorage
